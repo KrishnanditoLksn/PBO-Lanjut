@@ -38,19 +38,22 @@ public class Perpustakaan {
 
     public void showingCollectionList() {
         for (Koleksi koleksi : koleksiArrayList) {
+            int index = koleksiArrayList.indexOf(koleksi);
+            String indexString = "[" + index + "]";
+
             if (koleksi instanceof Buku buku) {
-                System.out.println(buku.getTitle() + "\t" + buku.getIsbn() + "\t" + buku.getJumlahHalaman());
+                System.out.printf("%-8s %-20s %-15s %-12s%n", indexString, buku.getTitle(), buku.getIsbn(), buku.getJumlahHalaman());
             }
             if (koleksi instanceof Majalah majalah) {
-                System.out.println(majalah.getTitle() + "\t" + majalah.getIssn() + majalah.getSeries() + "\t" + majalah.getVolume());
+                System.out.printf("%-8s %-20s %-15s %-15s %-10s%n", indexString, majalah.getTitle(), majalah.getIssn(), majalah.getSeries(), majalah.getVolume());
             }
             if (koleksi instanceof Dvd dvd) {
-                System.out.println(dvd.getTitle() + "\t" + dvd.getIsbn() + dvd.getFormat());
+                System.out.printf("%-8s %-20s %-15s %-12s%n", indexString, dvd.getTitle(), dvd.getIsbn(), dvd.getFormat());
             }
         }
     }
 
-    public String searchingTheKoleksi(String title) {
+    public String searchingBookCollection(String title) {
         for (Koleksi koleksi : koleksiArrayList) {
             if (koleksi.getTitle().equalsIgnoreCase(title)) {
                 if (koleksi instanceof Majalah majalah) {
@@ -61,8 +64,6 @@ public class Perpustakaan {
                 }
                 if (koleksi instanceof Dvd dvd) {
                     return String.format("%s %s %s", dvd.getTitle(), dvd.getIsbn(), dvd.getFormat());
-                } else {
-                    return "Not of instance class!!!";
                 }
             }
         }
@@ -72,28 +73,23 @@ public class Perpustakaan {
 
     public String borrowBookByIndex(int index) {
         if ((index < 0 || index <= koleksiArrayList.size())) {
-            /*
-            TODO() mengembalikan buku dengan method add
-             */
-            for (Koleksi koleksi : koleksiArrayList) {
-                koleksi = koleksiArrayList.remove(index);
+            Koleksi koleksi = koleksiArrayList.remove(index);
 
-                if (koleksi instanceof Buku) {
-                    return "Anda meminjam buku" + koleksi.getTitle() + ((Buku) koleksi).getIsbn();
-                }
-                if (koleksi instanceof Majalah) {
-                    /*return ""*/
-                }
-                if (koleksi instanceof Dvd) {
-
-                }
+            if (koleksi instanceof Buku) {
+                return "Anda meminjam buku" + "\t" + koleksi.getTitle() + "\t" + ((Buku) koleksi).getIsbn();
+            }
+            if (koleksi instanceof Majalah) {
+                return "Anda meminjam buku" + "\t" + koleksi.getTitle() + "\t" + ((Majalah) koleksi).getIssn();
+            }
+            if (koleksi instanceof Dvd) {
+                return "Anda meminjam buku" + "\t" + koleksi.getTitle() + "\t" + ((Dvd) koleksi).getIsbn() + ((Dvd) koleksi).getFormat();
             }
         }
-        return null;
+        return "Out of index !!!";
     }
 
     public void startMenuShow(Scanner scanner) {
-        System.out.println("Selamat datang di perpustakaan" + getNamePerpustakaan() + "Alamat : " + getAlamat());
+        System.out.println("Selamat datang di perpustakaan" + "\t" + getNamePerpustakaan() + "\t" + "Alamat : " + "\t" + getAlamat());
         boolean isRunning = true;
         int userPilihan;
         while (isRunning) {
@@ -116,12 +112,12 @@ public class Perpustakaan {
                 System.out.println("Judul buku : ");
                 String searcher = scanner.next();
                 searcher += scanner.nextLine();
-                System.out.println(searchingTheKoleksi(searcher));
+                System.out.println(searchingBookCollection(searcher));
             } else if (userPilihan == 4) {
                 System.out.println("Sayonara!!!");
                 isRunning = false;
             } else {
-                System.out.println("Invalid Option !!!");
+                System.out.println("Invalid Option !!!(1-4)");
             }
         }
     }
