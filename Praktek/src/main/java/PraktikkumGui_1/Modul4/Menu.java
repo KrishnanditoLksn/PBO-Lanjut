@@ -1,4 +1,4 @@
-package PraktikkumGui_1.MenuKaryawan;
+package PraktikkumGui_1.Modul4;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,8 +10,6 @@ public class Menu extends JFrame {
         JMenuItem menuItem1 = new JMenuItem();
         JMenuItem menuItem2 = new JMenuItem();
         JMenuItem menuItem3 = new JMenuItem();
-        JMenuItem subMenuItem1 = new JMenuItem();
-        JMenu submenu1 = new JMenu();
         JPanel jPanel = new JPanel();
 
         //membuat menu untuk karyawan
@@ -19,7 +17,6 @@ public class Menu extends JFrame {
         menuItem1.setFont(new Font(Font.SERIF, Font.BOLD, 12));
         menuItem1.setBackground(Color.LIGHT_GRAY);
         menu1.add(menuItem1);
-        menu1.addSeparator();
 
         //membuat menu untuk marketing
         menuItem2.setText("Tambah Marketing");
@@ -33,7 +30,6 @@ public class Menu extends JFrame {
         menuItem3.setFont(new Font(Font.SERIF, Font.BOLD, 12));
         menuItem3.setBackground(Color.LIGHT_GRAY);
         menu1.add(menuItem3);
-        menu1.addSeparator();
 
         menu1.setFont(new Font("Segoe UI", Font.BOLD, 12));
         menuBar1.add(menu1);
@@ -47,7 +43,6 @@ public class Menu extends JFrame {
         this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
 
     public static void main(String[] args) {
         new Menu();
