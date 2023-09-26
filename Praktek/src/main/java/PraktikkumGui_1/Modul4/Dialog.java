@@ -8,9 +8,11 @@ import java.awt.event.ActionListener;
 public class Dialog extends JFrame {
     private static final int FRAME_X_ORIGIN = 150;
     private static final int FRAME_Y_ORIGIN = 250;
+    /* String text;*/
+    private int dateComboBox;
 
     public Dialog() {
-        dialogGui();
+
     }
 
     public static void main(String[] args) {
@@ -61,22 +63,32 @@ public class Dialog extends JFrame {
         container.add(jLabel4);
 
         //Membuat combo box untuk tanggal
-        String[] date = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
-        JComboBox<String> dateCombo = new JComboBox<>(date);
+        JComboBox<Integer> dateCombo = new JComboBox<>();
+        for (int i = 1; i <= 31; i++) {
+            dateComboBox++;
+            dateCombo.addItem(dateComboBox);
+        }
         dateCombo.setBounds(150, 178, 50, 19);
         container.add(dateCombo);
 
         //Membuat combo box untuk bulan
         String[] month = {"Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"};
-        JComboBox<String> monthCombo = new JComboBox<>(month);
+        JComboBox<String> monthCombo = new JComboBox<>();
+        for (String s : month) {
+            monthCombo.addItem(s);
+        }
         monthCombo.setBounds(210, 178, 100, 19);
         container.add(monthCombo);
 
-        //Membuat text field untuk tahun
-        jTextField3 = new JTextField();
-        jTextField3.setColumns(28);
-        jTextField3.setBounds(319, 178, 45, 19);
-        container.add(jTextField3);
+        //Membuat tahun untuk checkbox
+        JComboBox<Integer> yearCombo = new JComboBox<>();
+        int yearComboBox = 2024;
+        for (int i = yearComboBox; i > 1945; i--) {
+            yearComboBox--;
+            yearCombo.addItem(yearComboBox);
+        }
+        yearCombo.setBounds(319, 178, 60, 19);
+        container.add(yearCombo);
 
         //Membuat label untuk alamat
         jLabel5 = new JLabel("Alamat:");
@@ -118,6 +130,7 @@ public class Dialog extends JFrame {
             }
         });
         container.add(btn2);
+
         //Mengatur layout pada container dan ukuran kotak dialog
         container.setLayout(null);
         jDialog.add(container);
@@ -133,7 +146,7 @@ public class Dialog extends JFrame {
         public void actionPerformed(ActionEvent e) {
             JFrame jFrame = new JFrame("Badalah!!!");
             JPanel jPanel = new JPanel();
-            JButton button1 = new JButton("Hey me");
+            JButton button1 = new JButton("Data disimpan , tapi ini button hehehe");
             jPanel.add(button1);
             jPanel.setBounds(250, 300, 200, 100);
             jFrame.add(jPanel);
