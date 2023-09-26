@@ -2,17 +2,28 @@ package PraktikkumGui_1.Modul4;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Dialog extends JFrame{
+public class Dialog extends JFrame {
     private static final int FRAME_X_ORIGIN = 150;
     private static final int FRAME_Y_ORIGIN = 250;
 
     public Dialog() {
+        dialogGui();
+    }
+
+    public static void main(String[] args) {
+        new Dialog();
+    }
+
+    public void dialogGui() {
         JDialog jDialog = new JDialog();
         Container container = new Container();
         JButton btn1, btn2;
         JLabel jLabel1, jLabel2, jLabel3, jLabel4, jLabel5, jLabel6;
         JTextField jTextField1, jTextField2, jTextField3, jTextField4, jTextField5;
+        actionButton actionButton = new actionButton();
 
         //Membuat judul untuk dialog
         jLabel1 = new JLabel("Data Manager");
@@ -93,14 +104,20 @@ public class Dialog extends JFrame{
         btn1 = new JButton("Simpan");
         btn1.setBounds(120, 250, 80, 30);
         btn1.setBackground(Color.LIGHT_GRAY);
+        btn1.addActionListener(actionButton);
         container.add(btn1);
 
         //Membuat button "batal"
         btn2 = new JButton("Batal");
         btn2.setBounds(225, 250, 80, 30);
         btn2.setBackground(Color.LIGHT_GRAY);
+        btn2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Ok ini batal");
+            }
+        });
         container.add(btn2);
-
         //Mengatur layout pada container dan ukuran kotak dialog
         container.setLayout(null);
         jDialog.add(container);
@@ -111,7 +128,18 @@ public class Dialog extends JFrame{
         jDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }
 
-    public static void main(String[] args) {
-        new Dialog();
+    public static class actionButton implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JFrame jFrame = new JFrame("Badalah!!!");
+            JPanel jPanel = new JPanel();
+            JButton button1 = new JButton("Hey me");
+            jPanel.add(button1);
+            jPanel.setBounds(250, 300, 200, 100);
+            jFrame.add(jPanel);
+            jFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            jFrame.setBounds(300, 250, 250, 100);
+            jFrame.setVisible(true);
+        }
     }
 }
