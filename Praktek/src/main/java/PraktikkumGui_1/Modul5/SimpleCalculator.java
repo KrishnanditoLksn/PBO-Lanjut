@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 public class SimpleCalculator extends JFrame implements ActionListener {
 
     protected JPanel jPanel = new JPanel();
-
     protected JTextField textField1, textField2, result;
     protected JLabel input1, input2, hasil;
     protected JButton addition, subtraction, multiplication, resetNumber, division, modulo;
@@ -20,58 +19,67 @@ public class SimpleCalculator extends JFrame implements ActionListener {
     }
 
     public void calculatorGui() {
+        jPanel.setLayout(null);
+
         input1 = new JLabel("Bilangan 1");
-        input1.setBounds(20, 20, 80, 30);
+        input1.setBounds(20, 80, 85, 30);
         jPanel.add(input1);
 
         textField1 = new JTextField(20);
-        textField1.setBounds(25, 20, 100, 60);
+        textField1.setBounds(100, 85, 85, 30);
         jPanel.add(textField1);
 
         input2 = new JLabel("Bilangan 2");
-        input2.setBounds(25, 30, 85, 30);
+        input2.setBounds(20, 120, 85, 30);
         jPanel.add(input2);
 
         textField2 = new JTextField(20);
-        textField2.setBounds(300, 450, 100, 60);
+        textField2.setBounds(100, 120, 85, 30);
         jPanel.add(textField2);
 
-
         hasil = new JLabel("Hasil");
+        hasil.setBounds(20 , 155,70,30);
         jPanel.add(hasil);
 
         result = new JTextField(20);
         result.setBackground(Color.WHITE);
+        result.setBounds(100,155,85,30);
         result.setEditable(false);
         jPanel.add(result);
 
         addition = new JButton("+");
+        addition.setBounds(100,190,75,30);
         addition.addActionListener(this);
         jPanel.add(addition);
 
         subtraction = new JButton("-");
+        subtraction.setBounds(180,190,75,30);
         subtraction.addActionListener(this);
         jPanel.add(subtraction);
 
         multiplication = new JButton("x");
+        multiplication.setBounds(20,190,75,30);
         multiplication.addActionListener(this);
         jPanel.add(multiplication);
 
         division = new JButton("/");
+        division.setBounds(20,230,75,30);
         division.addActionListener(this);
         jPanel.add(division);
 
         resetNumber = new JButton("C");
+        resetNumber.setBounds(100,230,75,30);
         resetNumber.addActionListener(this);
         jPanel.add(resetNumber);
 
         modulo = new JButton("%");
+        modulo.setBounds(180,230,75,30);
         modulo.addActionListener(this);
         jPanel.add(modulo);
 
         this.add(jPanel);
         this.setTitle("Input Data");
-        this.setBounds(250, 300, 500, 400);
+        this.setBounds(400, 550, 500, 400);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
