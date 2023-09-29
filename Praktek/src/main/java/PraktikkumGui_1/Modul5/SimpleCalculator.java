@@ -38,42 +38,42 @@ public class SimpleCalculator extends JFrame implements ActionListener {
         jPanel.add(textField2);
 
         hasil = new JLabel("Hasil");
-        hasil.setBounds(20 , 155,70,30);
+        hasil.setBounds(20, 155, 70, 30);
         jPanel.add(hasil);
 
         result = new JTextField(20);
         result.setBackground(Color.WHITE);
-        result.setBounds(100,155,85,30);
+        result.setBounds(100, 155, 85, 30);
         result.setEditable(false);
         jPanel.add(result);
 
         addition = new JButton("+");
-        addition.setBounds(100,190,75,30);
+        addition.setBounds(100, 190, 75, 30);
         addition.addActionListener(this);
         jPanel.add(addition);
 
         subtraction = new JButton("-");
-        subtraction.setBounds(180,190,75,30);
+        subtraction.setBounds(180, 190, 75, 30);
         subtraction.addActionListener(this);
         jPanel.add(subtraction);
 
         multiplication = new JButton("x");
-        multiplication.setBounds(20,190,75,30);
+        multiplication.setBounds(20, 190, 75, 30);
         multiplication.addActionListener(this);
         jPanel.add(multiplication);
 
         division = new JButton("/");
-        division.setBounds(20,230,75,30);
+        division.setBounds(20, 230, 75, 30);
         division.addActionListener(this);
         jPanel.add(division);
 
         resetNumber = new JButton("C");
-        resetNumber.setBounds(100,230,75,30);
+        resetNumber.setBounds(100, 230, 75, 30);
         resetNumber.addActionListener(this);
         jPanel.add(resetNumber);
 
         modulo = new JButton("%");
-        modulo.setBounds(180,230,75,30);
+        modulo.setBounds(180, 230, 75, 30);
         modulo.addActionListener(this);
         jPanel.add(modulo);
 
@@ -88,36 +88,45 @@ public class SimpleCalculator extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String userInput = e.getActionCommand();
         int buttonResult;
-        try {
-            int numberInt = Integer.parseInt(textField1.getText());
-            int number2Int = Integer.parseInt(textField2.getText());
-            switch (userInput) {
-                case "+" -> {
-                    buttonResult = numberInt + number2Int;
-                    result.setText(String.valueOf(buttonResult));
+        String inputNumber1 = textField1.getText();
+        String inputNumber2 = textField2.getText();
+
+        if (inputNumber1.isEmpty() || inputNumber2.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Salah satu field harus diisi !!!","Error!!!",JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                int numberInt = Integer.parseInt(inputNumber1);
+                int number2Int = Integer.parseInt(inputNumber2);
+                switch (userInput) {
+                    case "+" -> {
+                        buttonResult = numberInt + number2Int;
+                        result.setText(String.valueOf(buttonResult));
+                    }
+                    case "-" -> {
+                        buttonResult = numberInt - number2Int;
+                        result.setText(String.valueOf(buttonResult));
+                    }
+                    case "x" -> {
+                        buttonResult = numberInt * number2Int;
+                        result.setText(String.valueOf(buttonResult));
+                    }
+                    //Jika user memilih C  , maka akan di set null untuk setiap field button number1 , number2 dan juga resultnya
+                    //GPT SOURCE
+                    case "%" -> {
+                        buttonResult = numberInt % number2Int;
+                        result.setText(String.valueOf(buttonResult));
+                    }
+                    case "C" -> {
+                        textField1.setText("");
+                        textField2.setText("");
+                        result.setText(null);
+                    }
                 }
-                case "-" -> {
-                    buttonResult = numberInt - number2Int;
-                    result.setText(String.valueOf(buttonResult));
-                }
-                case "x" -> {
-                    buttonResult = numberInt * number2Int;
-                    result.setText(String.valueOf(buttonResult));
-                }
-                //Jika user memilih C  , maka akan di set null untuk setiap field button number1 , number2 dan juga resultnya
-                //GPT SOURCE
-                case "%" -> {
-                    buttonResult = numberInt % number2Int;
-                    result.setText(String.valueOf(buttonResult));
-                }
-                case "C" -> {
-                    textField1.setText("");
-                    textField2.setText("");
-                    result.setText(null);
-                }
+            } catch (NumberFormatException error) {
+                JOptionPane.showMessageDialog(null, "Input harus Integer !!","Error!!",JOptionPane.ERROR_MESSAGE);
+            } catch (ArithmeticException error) {
+                JOptionPane.showMessageDialog(null, "gabisa dibagi 0");
             }
-        } catch (Exception error) {
-            JOptionPane.showMessageDialog(null, "gabisa geblek , eh kasar");
         }
     }
 }
