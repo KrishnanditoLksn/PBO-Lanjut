@@ -1,6 +1,7 @@
 package PraktikkumGui_1.Modul5;
 
 import javax.swing.*;
+import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -108,7 +109,8 @@ public class SimpleCalculator extends JFrame implements ActionListener {
 
         if (inputNumber1.isEmpty() && inputNumber2.isEmpty()) {//jika teks field 1 dan teks 2 kosong
             JOptionPane.showMessageDialog(null, "Semua field harus diisi !!!", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (!(inputNumber1.isEmpty()) && (!(inputNumber2.isEmpty()))) {
+        }
+        else if (!(inputNumber1.isEmpty()) && (!(inputNumber2.isEmpty()))) {
             try {
                 int numberInt = Integer.parseInt(inputNumber1);//Konversi String to Int
                 int number2Int = Integer.parseInt(inputNumber2);//Konversi String to Int
@@ -145,12 +147,13 @@ public class SimpleCalculator extends JFrame implements ActionListener {
             } catch (ArithmeticException error) {//Menangkap error arithmetic exception
                 JOptionPane.showMessageDialog(null, "Tidak bisa dibagi 0", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } else {//Menampilkan pesan dialog field harus diisi
+        }/*else {//Menampilkan pesan dialog field harus diisi
             if (inputNumber1.isEmpty()) {//Jika field 1 kosong
+                textField1.setBorder(new MatteBorder(2, 2, 2, 2, Color.RED));
                 JOptionPane.showMessageDialog(null, " Field Bilangan 1 harus diisi!!!", "Error", JOptionPane.ERROR_MESSAGE);
             } else {//Menampilkan pesan dialog field 2 kosong
                 JOptionPane.showMessageDialog(null, "Field  Bilangan 2 harus diisi!!!", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        }
+        }*/
     }
 }
