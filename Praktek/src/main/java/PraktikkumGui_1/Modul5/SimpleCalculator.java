@@ -107,11 +107,14 @@ public class SimpleCalculator extends JFrame implements ActionListener {
         String inputNumber1 = textField1.getText();//menerima input user di text field 1 sebagai string
         String inputNumber2 = textField2.getText();//menerima input user di text field 2 sebagai string
 
-        if (inputNumber1.isEmpty() && inputNumber2.isEmpty()) {//jika teks field 1 dan teks 2 kosong
+        if (inputNumber1.isEmpty() || inputNumber2.isEmpty()) {//jika teks field 1 dan teks 2 kosong
             JOptionPane.showMessageDialog(null, "Semua field harus diisi !!!", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        else if (!(inputNumber1.isEmpty()) && (!(inputNumber2.isEmpty()))) {
+            textField1.setBorder(new MatteBorder(2, 2, 2, 2, Color.RED));//apabila text field kosong , muncul border merah
+            textField2.setBorder(new MatteBorder(2, 2, 2, 2, Color.RED));//apabila text field kosong , muncul border merah
+        } else {
             try {
+                textField1.setBorder(UIManager.getLookAndFeelDefaults().getBorder("TextField.border"));
+                textField2.setBorder(UIManager.getLookAndFeelDefaults().getBorder("TextField.border"));
                 int numberInt = Integer.parseInt(inputNumber1);//Konversi String to Int
                 int number2Int = Integer.parseInt(inputNumber2);//Konversi String to Int
                 switch (userInput) {
@@ -147,13 +150,6 @@ public class SimpleCalculator extends JFrame implements ActionListener {
             } catch (ArithmeticException error) {//Menangkap error arithmetic exception
                 JOptionPane.showMessageDialog(null, "Tidak bisa dibagi 0", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        }/*else {//Menampilkan pesan dialog field harus diisi
-            if (inputNumber1.isEmpty()) {//Jika field 1 kosong
-                textField1.setBorder(new MatteBorder(2, 2, 2, 2, Color.RED));
-                JOptionPane.showMessageDialog(null, " Field Bilangan 1 harus diisi!!!", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {//Menampilkan pesan dialog field 2 kosong
-                JOptionPane.showMessageDialog(null, "Field  Bilangan 2 harus diisi!!!", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }*/
+        }
     }
 }
