@@ -94,7 +94,7 @@ public class SimpleCalculator extends JFrame implements ActionListener {
         this.add(jPanel);
         this.setTitle("Input Data");
         this.setBounds(400, 550, 295, 400);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setVisible(true);
     }
 
@@ -148,6 +148,7 @@ public class SimpleCalculator extends JFrame implements ActionListener {
                         }
                     }
                 }
+
             } catch (NumberFormatException error) {//Menangkap error number exception dan muncul message dialog
                 JOptionPane.showMessageDialog(null, "Input harus Integer !!", "Error", JOptionPane.ERROR_MESSAGE);
             } catch (ArithmeticException error) {//Menangkap error arithmetic exception
