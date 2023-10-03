@@ -140,9 +140,12 @@ public class SimpleCalculator extends JFrame implements ActionListener {
                         result.setText(String.valueOf(buttonResult));
                     }
                     case "C" -> {//Mereset input
-                        textField1.setText("");//GPT SOURCE
+                        textField1.setText("");    //GPT SOURCE
                         textField2.setText("");
-                        result.setText(null);
+
+                        if (inputNumber1.isBlank() && inputNumber2.isBlank()) {
+                            result.setText(null);
+                        }
                     }
                 }
             } catch (NumberFormatException error) {//Menangkap error number exception dan muncul message dialog
