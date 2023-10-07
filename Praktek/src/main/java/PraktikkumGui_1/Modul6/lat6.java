@@ -4,6 +4,8 @@
  */
 package PraktikkumGui_1.Modul6;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ASUS
@@ -33,6 +35,10 @@ public class lat6 extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,6 +74,17 @@ public class lat6 extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Hasil");
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("jMenu3");
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,7 +128,7 @@ public class lat6 extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(47, 47, 47)
                 .addComponent(jButton1)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         pack();
@@ -128,13 +145,18 @@ public class lat6 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int  input1 =  Integer.parseInt(jTextField1.getText());
-        int  input2 =  Integer.parseInt(jTextField2.getText());
         
-      
-        int luas = input1 * input2;
-        jTextField3.setText(String.valueOf(luas));
+        try{
+            
+            int  input1 =  Integer.parseInt(jTextField1.getText());
+            int  input2 =  Integer.parseInt(jTextField2.getText());
         
+            int luas = input1 * input2;
+            jTextField3.setText(String.valueOf(luas));
+            
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Mohon masukkan Integer","Error",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -181,6 +203,10 @@ public class lat6 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
     private static javax.swing.JTextField jTextField1;
     private static javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
