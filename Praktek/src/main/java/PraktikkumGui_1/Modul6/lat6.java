@@ -150,7 +150,7 @@ public class lat6 extends javax.swing.JFrame {
             
             int  input1 =  Integer.parseInt(jTextField1.getText());
             int  input2 =  Integer.parseInt(jTextField2.getText());
-        
+            
             int luas = input1 * input2;
             jTextField3.setText(String.valueOf(luas));
             
