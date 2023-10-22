@@ -9,10 +9,11 @@ import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 
 /**
  *
- * @author ASUS
+ * @author ASUS TBA
  */
 public class mockup2 extends javax.swing.JFrame {
 
@@ -27,6 +28,7 @@ public class mockup2 extends javax.swing.JFrame {
         setImage();
     }
 
+    //masih error 
     public void setImage() {
         ImageIcon icon = new ImageIcon("/Images/pakis.jpg");
         Image image = icon.getImage().getScaledInstance(750, 500, Image.SCALE_SMOOTH);
@@ -43,27 +45,40 @@ public class mockup2 extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelDashBoard1 = new javax.swing.JLabel();
         jLabelShop = new javax.swing.JLabel();
         jLabelCart = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabelGreeting1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         jPanelItem1 = new javax.swing.JPanel();
         jLabelItem1 = new javax.swing.JLabel();
         jSpinnerItem1 = new javax.swing.JSpinner();
         jButtonBuy1 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelItemName1 = new javax.swing.JLabel();
+        jPanelItem2 = new javax.swing.JPanel();
+        jLabelItem2 = new javax.swing.JLabel();
+        jSpinnerItem2 = new javax.swing.JSpinner();
+        jButtonBuy2 = new javax.swing.JButton();
+        jLabelItemName2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(43, 235, 69));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jLabel1.setBackground(new java.awt.Color(91, 243, 126));
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("DASHBOARD ");
+        jLabelDashBoard1.setBackground(new java.awt.Color(91, 243, 126));
+        jLabelDashBoard1.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        jLabelDashBoard1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelDashBoard1.setText("DASHBOARD ");
+        jLabelDashBoard1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelDashBoard1MouseClicked(evt);
+            }
+        });
 
         jLabelShop.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabelShop.setText("BELANJA");
@@ -94,7 +109,7 @@ public class mockup2 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1))
+                        .addComponent(jLabelDashBoard1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addComponent(jLabelShop)
@@ -103,18 +118,18 @@ public class mockup2 extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabelCart)
-                .addGap(39, 39, 39))
+                .addGap(36, 36, 36))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelDashBoard1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(109, 109, 109)
                 .addComponent(jLabelShop, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(177, 177, 177)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelCart)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(207, 207, 207))
         );
 
         jLabelShop.getAccessibleContext().setAccessibleName("jLabelShop\n");
@@ -122,6 +137,56 @@ public class mockup2 extends javax.swing.JFrame {
 
         jPanel2.setLayout(new java.awt.CardLayout());
 
+        jLabelGreeting1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabelGreeting1.setText("Halo !! , Selamat datang di toko Heavy Rotation 17 \nSelamat berbelanjaaa!!!");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(jLabelGreeting1, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(301, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(163, 163, 163)
+                .addComponent(jLabelGreeting1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(235, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPanel5, "card4");
+
+        jLabel3.setText("ok ini label ");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1125, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 652, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel2.add(jPanel3, "card3");
+
+        jPanelItem1.setBackground(new java.awt.Color(38, 185, 38));
+
+        jLabelItem1.setBackground(new java.awt.Color(148, 242, 120));
         jLabelItem1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         jSpinnerItem1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -137,83 +202,128 @@ public class mockup2 extends javax.swing.JFrame {
             }
         });
 
+        jLabelItemName1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabelItemName1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelItemName1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelItemName1.setText("TANAMAN PAKIS");
+
         javax.swing.GroupLayout jPanelItem1Layout = new javax.swing.GroupLayout(jPanelItem1);
         jPanelItem1.setLayout(jPanelItem1Layout);
         jPanelItem1Layout.setHorizontalGroup(
             jPanelItem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelItem1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelItem1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                .addComponent(jLabelItem1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelItem1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(23, 23, 23)
                 .addComponent(jButtonBuy1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSpinnerItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addGap(35, 35, 35))
+            .addGroup(jPanelItem1Layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(jLabelItemName1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         jPanelItem1Layout.setVerticalGroup(
             jPanelItem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelItem1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabelItem1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(jLabelItemName1)
+                .addGap(18, 18, 18)
                 .addGroup(jPanelItem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSpinnerItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBuy1))
-                .addGap(16, 16, 16))
+                    .addComponent(jButtonBuy1)))
         );
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(jPanelItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(738, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(jPanelItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(393, Short.MAX_VALUE))
-        );
+        jPanelItem2.setBackground(new java.awt.Color(38, 185, 38));
 
-        jPanel2.add(jPanel3, "card2");
+        jLabelItem2.setBackground(new java.awt.Color(148, 242, 120));
+        jLabelItem2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel3.setText("ok ini label ");
+        jSpinnerItem2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jSpinnerItem2KeyPressed(evt);
+            }
+        });
+
+        jButtonBuy2.setText("Beli");
+        jButtonBuy2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuy2ActionPerformed(evt);
+            }
+        });
+
+        jLabelItemName2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabelItemName2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelItemName2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelItemName2.setText("TANAMAN BONSAI\n");
+
+        javax.swing.GroupLayout jPanelItem2Layout = new javax.swing.GroupLayout(jPanelItem2);
+        jPanelItem2.setLayout(jPanelItem2Layout);
+        jPanelItem2Layout.setHorizontalGroup(
+            jPanelItem2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelItem2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelItem2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelItem2Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jButtonBuy2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSpinnerItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
+            .addGroup(jPanelItem2Layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(jLabelItemName2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(81, Short.MAX_VALUE))
+        );
+        jPanelItem2Layout.setVerticalGroup(
+            jPanelItem2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelItem2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelItem2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(jLabelItemName2)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelItem2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jSpinnerItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBuy2)))
+        );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1125, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel3)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jPanelItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(91, 91, 91)
+                .addComponent(jPanelItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(436, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel3)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanelItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(429, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel4, "card3");
+        jPanel2.add(jPanel4, "card2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -225,10 +335,16 @@ public class mockup2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void spinnerChecker(JSpinner spinner) {
+        int spinnerChecker = (Integer) spinner.getValue();
+        if (spinnerChecker <= 0) {
+            JOptionPane.showMessageDialog(null, "Mohon masukkan jumlah barang anda !!!");
+        }
+    }
+
     private void jLabelShopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelShopMouseClicked
         // TODO add your handling code here:
         cardMenu.show(jPanel2, "card2");
-
     }//GEN-LAST:event_jLabelShopMouseClicked
 
     private void jLabelCartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCartMouseClicked
@@ -246,16 +362,30 @@ public class mockup2 extends javax.swing.JFrame {
 
     private void jButtonBuy1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuy1ActionPerformed
         // TODO add your handling code here:
-        int spinnerItem1 = (Integer) jSpinnerItem1.getValue();
-
-        if (spinnerItem1 > 1) {
-            JOptionPane.showMessageDialog(null, "Anda telah beli ");
-        } else {
-            JOptionPane.showMessageDialog(null, "Input");
-        }
-
+//        int spinnerItem1 = (Integer) jSpinnerItem1.getValue();
+//
+//        if (spinnerItem1 > 1) {
+//            JOptionPane.showMessageDialog(null, "Anda telah beli ");
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Input");
+//        }
+        spinnerChecker(jSpinnerItem1);
 
     }//GEN-LAST:event_jButtonBuy1ActionPerformed
+
+    private void jSpinnerItem2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSpinnerItem2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jSpinnerItem2KeyPressed
+
+    private void jButtonBuy2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuy2ActionPerformed
+        // TODO add your handling code here:
+        spinnerChecker(jSpinnerItem2);
+    }//GEN-LAST:event_jButtonBuy2ActionPerformed
+
+    private void jLabelDashBoard1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelDashBoard1MouseClicked
+        // TODO add your handling code here:
+        cardMenu.show(jPanel2, "card4");
+    }//GEN-LAST:event_jLabelDashBoard1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -294,16 +424,24 @@ public class mockup2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuy1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButtonBuy2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelCart;
+    private javax.swing.JLabel jLabelDashBoard1;
+    private javax.swing.JLabel jLabelGreeting1;
     private javax.swing.JLabel jLabelItem1;
+    private javax.swing.JLabel jLabelItem2;
+    private javax.swing.JLabel jLabelItemName1;
+    private javax.swing.JLabel jLabelItemName2;
     private javax.swing.JLabel jLabelShop;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanelItem1;
+    private javax.swing.JPanel jPanelItem2;
     private javax.swing.JSpinner jSpinnerItem1;
+    private javax.swing.JSpinner jSpinnerItem2;
     // End of variables declaration//GEN-END:variables
 }
