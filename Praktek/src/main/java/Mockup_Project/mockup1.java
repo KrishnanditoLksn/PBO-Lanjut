@@ -32,7 +32,6 @@ public class mockup1 extends javax.swing.JFrame {
         jSpinner1 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 700));
 
         jPanel2.setLayout(new java.awt.CardLayout());
 
