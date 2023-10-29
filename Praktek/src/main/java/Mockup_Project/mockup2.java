@@ -6,8 +6,10 @@ package Mockup_Project;
 
 import java.awt.CardLayout;
 import java.awt.Image;
+import java.util.Stack;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
@@ -20,6 +22,10 @@ import javax.swing.table.DefaultTableModel;
 public class mockup2 extends javax.swing.JFrame {
 
     data_tanaman list_tanaman = new data_tanaman();
+    Tanaman pakis, bonsai;
+    static int remainingBonsaiStock, remainingPakisStock;
+    PembeliRegistrasi customer = new PembeliRegistrasi();
+    Pembeli pembeli = new Pembeli();
 
     /**
      * Creates new form mock_up2
@@ -31,11 +37,11 @@ public class mockup2 extends javax.swing.JFrame {
         cardMenu = (CardLayout) (jPanel2.getLayout());
     }
 
-    //method untuk mendapatkan inputan yang ada di keranjang
-    private void totalCartItem() {
-
-    }
-
+//    //method untuk mendapatkan inputan yang ada di keranjang
+//    private void totalCartItem() {
+//        Stack<Object> stackItem = new Stack();
+//
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,6 +62,7 @@ public class mockup2 extends javax.swing.JFrame {
         jPanelKeranjang = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabelTitle = new javax.swing.JLabel();
         jShopPanel = new javax.swing.JPanel();
         jPanelItem1 = new javax.swing.JPanel();
         jLabelItem1 = new javax.swing.JLabel();
@@ -69,7 +76,7 @@ public class mockup2 extends javax.swing.JFrame {
         jLabelItemName2 = new javax.swing.JLabel();
         jButtonCheckOut1 = new javax.swing.JButton();
         jButtonRegister = new javax.swing.JButton();
-        jButtonLogin = new javax.swing.JButton();
+        jButtonLoginResponse = new javax.swing.JButton();
         jLabelStock1 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
 
@@ -163,24 +170,24 @@ public class mockup2 extends javax.swing.JFrame {
 
         jPanel2.setLayout(new java.awt.CardLayout());
 
-        jLabelGreeting1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabelGreeting1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabelGreeting1.setText("Halo !! , Selamat datang di toko Heavy Rotation 17 \nSelamat berbelanjaaa!!!");
 
         javax.swing.GroupLayout jMainPanelLayout = new javax.swing.GroupLayout(jMainPanel);
         jMainPanel.setLayout(jMainPanelLayout);
         jMainPanelLayout.setHorizontalGroup(
             jMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jMainPanelLayout.createSequentialGroup()
-                .addGap(176, 176, 176)
-                .addComponent(jLabelGreeting1, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(379, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jMainPanelLayout.createSequentialGroup()
+                .addContainerGap(289, Short.MAX_VALUE)
+                .addComponent(jLabelGreeting1)
+                .addGap(85, 85, 85))
         );
         jMainPanelLayout.setVerticalGroup(
             jMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jMainPanelLayout.createSequentialGroup()
-                .addGap(208, 208, 208)
-                .addComponent(jLabelGreeting1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(519, Short.MAX_VALUE))
+                .addGap(160, 160, 160)
+                .addComponent(jLabelGreeting1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(488, Short.MAX_VALUE))
         );
 
         jPanel2.add(jMainPanel, "card4");
@@ -190,26 +197,32 @@ public class mockup2 extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nama", "Stock Tanaman", "Jumlah", "Harga ", "Jenis Tanaman"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        jLabelTitle.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabelTitle.setText("TABEL CHECKOUT");
 
         javax.swing.GroupLayout jPanelKeranjangLayout = new javax.swing.GroupLayout(jPanelKeranjang);
         jPanelKeranjang.setLayout(jPanelKeranjangLayout);
         jPanelKeranjangLayout.setHorizontalGroup(
             jPanelKeranjangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1229, Short.MAX_VALUE)
             .addGroup(jPanelKeranjangLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1096, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanelKeranjangLayout.setVerticalGroup(
             jPanelKeranjangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelKeranjangLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
+                .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(356, Short.MAX_VALUE))
+                .addContainerGap(283, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanelKeranjang, "card3");
@@ -348,8 +361,13 @@ public class mockup2 extends javax.swing.JFrame {
             }
         });
 
-        jButtonLogin.setText("Login");
-        jButtonLogin.setPreferredSize(new java.awt.Dimension(90, 23));
+        jButtonLoginResponse.setText("Login");
+        jButtonLoginResponse.setPreferredSize(new java.awt.Dimension(90, 23));
+        jButtonLoginResponse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLoginResponseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jShopPanelLayout = new javax.swing.GroupLayout(jShopPanel);
         jShopPanel.setLayout(jShopPanelLayout);
@@ -363,7 +381,7 @@ public class mockup2 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)
-                        .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonLoginResponse, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
                         .addComponent(jButtonCheckOut1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
@@ -388,7 +406,7 @@ public class mockup2 extends javax.swing.JFrame {
                         .addGroup(jShopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jShopPanelLayout.createSequentialGroup()
                                 .addGroup(jShopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonLoginResponse, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButtonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanelItem2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -398,7 +416,7 @@ public class mockup2 extends javax.swing.JFrame {
                 .addContainerGap(480, Short.MAX_VALUE))
         );
 
-        jButtonLogin.getAccessibleContext().setAccessibleName("jButtonLogin");
+        jButtonLoginResponse.getAccessibleContext().setAccessibleName("jButtonLogin");
 
         jPanel2.add(jShopPanel, "card2");
 
@@ -448,6 +466,7 @@ public class mockup2 extends javax.swing.JFrame {
         cardMenu.show(jPanel2, "card2");
     }//GEN-LAST:event_jLabelShopMouseClicked
 
+
     private void jLabelCartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCartMouseClicked
         // TODO add your handling code here:
         cardMenu.show(jPanel2, "card3");
@@ -466,17 +485,15 @@ public class mockup2 extends javax.swing.JFrame {
     private void jButtonBuy1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuy1ActionPerformed
         // TODO add your handling code here:
         spinnerChecker(jSpinnerItem1);
-        Tanaman pakis = list_tanaman.getListTanaman().get(0);
+        pakis = list_tanaman.getListTanaman().get(0);
         System.out.println(pakis.getPlantName());
-        int sisa_pakis = pakis.getStock() - (Integer) jSpinnerItem1.getValue();
+        remainingPakisStock = pakis.getStock() - (Integer) jSpinnerItem1.getValue();
 
-        if (sisa_pakis >= pakis.getStock()) {
-            System.out.println("Jadi sisa tanaman pakis tinggal " + sisa_pakis);
+        if (remainingPakisStock >= pakis.getStock()) {
+            System.out.println("Jadi sisa tanaman pakis tinggal " + remainingPakisStock);
         } else {
             System.out.println("Stok tidak cukup !!!");
         }
-
-
     }//GEN-LAST:event_jButtonBuy1ActionPerformed
 
     private void jSpinnerItem2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSpinnerItem2KeyPressed
@@ -487,9 +504,8 @@ public class mockup2 extends javax.swing.JFrame {
     private void jButtonBonsaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBonsaiActionPerformed
         // TODO add your handling code here:
         spinnerChecker(jSpinnerItem2);
-        Tanaman bonsai = list_tanaman.getListTanaman().get(1);
-        int sisa_bonsai = bonsai.getStock() - (Integer) jSpinnerItem2.getValue();
-        System.out.println("Jadi sisa tanaman pakis tinggal " + sisa_bonsai);
+        bonsai = list_tanaman.getListTanaman().get(1);
+        remainingBonsaiStock = bonsai.getStock() - (Integer) jSpinnerItem2.getValue();
 
     }//GEN-LAST:event_jButtonBonsaiActionPerformed
 
@@ -505,15 +521,28 @@ public class mockup2 extends javax.swing.JFrame {
 
     private void jButtonCheckOut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckOut1ActionPerformed
         // TODO add your handling code here:
-
         cardMenu.show(jPanel2, "card3");
-
+        pakis = list_tanaman.getListTanaman().get(0);
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        
+//
+//        if (evt.getSource().equals(jSpinnerItem1)) {
+//            model.addRow(new Object[]{pembeli.getNama_Pembeli(), remainingPakisStock, jSpinnerItem1.getValue(), pakis.getPrice(), pakis.getPlantName()});
+//        } else {
+//            model.addRow(new Object[]{pembeli.getNama_Pembeli(), remainingBonsaiStock, jSpinnerItem2.getValue(), bonsai.getPrice(), bonsai.getPlantName()});
+//        }
     }//GEN-LAST:event_jButtonCheckOut1ActionPerformed
 
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
         // TODO add your handling code here:
-        PembeliRegistrasi.setDefaultLookAndFeelDecorated(rootPaneCheckingEnabled);
+        customer.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        customer.setVisible(true);
     }//GEN-LAST:event_jButtonRegisterActionPerformed
+
+    private void jButtonLoginResponseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginResponseActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButtonLoginResponseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -555,7 +584,7 @@ public class mockup2 extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBonsai;
     private javax.swing.JButton jButtonBuy1;
     private javax.swing.JButton jButtonCheckOut1;
-    private javax.swing.JButton jButtonLogin;
+    private javax.swing.JButton jButtonLoginResponse;
     private javax.swing.JButton jButtonRegister;
     private javax.swing.JLabel jLabelCart;
     private javax.swing.JLabel jLabelDashBoard1;
@@ -567,6 +596,7 @@ public class mockup2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelListTransacition;
     private javax.swing.JLabel jLabelShop;
     private javax.swing.JLabel jLabelStock1;
+    private javax.swing.JLabel jLabelTitle;
     private javax.swing.JPanel jMainPanel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
