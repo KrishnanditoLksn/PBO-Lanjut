@@ -10,8 +10,8 @@ package Mockup_Project;
  */
 public class PembeliRegistrasi extends javax.swing.JFrame {
 
-    private String namaInputTextField, passwordInputTextField;
-    private Pembeli pembeli = new Pembeli();
+    protected  String namaInputTextField, passwordInputTextField;
+    Pembeli pembeli = new Pembeli();
 
     /**
      * Creates new form PembeliRegistrasi

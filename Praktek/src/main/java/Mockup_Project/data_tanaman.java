@@ -15,8 +15,8 @@ public class data_tanaman {
 
     public data_tanaman() {
         listTanaman = new ArrayList<>();
-        listTanaman.add(new Tanaman(1000, "Tanaman Bonsai", 5000000));
         listTanaman.add(new Tanaman(500, "Tanaman Pakis", 4500));
+        listTanaman.add(new Tanaman(1000, "Tanaman Bonsai", 5000000));
     }
 
     public ArrayList<Tanaman> getListTanaman() {
