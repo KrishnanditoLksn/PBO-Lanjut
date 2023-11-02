@@ -5,6 +5,7 @@
 package kelompok_PBOL;
 
 import java.awt.CardLayout;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,6 +17,8 @@ public class MainApp extends javax.swing.JFrame {
      * Creates new form kelompok
      */
     CardLayout cardLayout;
+    ArrayList<Tanaman> tanamanArrayList = new ArrayList();
+    boolean isDataFill = false;
 
     public MainApp() {
         initComponents();
@@ -37,20 +40,20 @@ public class MainApp extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonDaftar = new javax.swing.JButton();
+        jButtonDaftarItem = new javax.swing.JButton();
+        jButtonKeranjang = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jMainRootPanel = new javax.swing.JPanel();
         jMainDashboardPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jItemPanel = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
         jTanamanPanel1 = new javax.swing.JPanel();
         jLabelItem1 = new javax.swing.JLabel();
         jSpinnerItem1 = new javax.swing.JSpinner();
         jLabelItemName1 = new javax.swing.JLabel();
         jButtonTambahKeranjang1 = new javax.swing.JButton();
+        jCheckoutButton1 = new javax.swing.JButton();
         jKeranjangMainPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -94,11 +97,21 @@ public class MainApp extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText(" Login & Register");
 
-        jButton1.setText("<>");
+        jButtonDaftar.setText("<>");
 
-        jButton2.setText("<>");
+        jButtonDaftarItem.setText("<>");
+        jButtonDaftarItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDaftarItemActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("<>");
+        jButtonKeranjang.setText("<>");
+        jButtonKeranjang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonKeranjangActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("<>");
 
@@ -114,9 +127,9 @@ public class MainApp extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel5)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
+                    .addComponent(jButtonDaftar)
+                    .addComponent(jButtonDaftarItem)
+                    .addComponent(jButtonKeranjang)
                     .addComponent(jButton4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -127,15 +140,15 @@ public class MainApp extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jButtonDaftar)
                 .addGap(19, 19, 19)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(jButtonDaftarItem)
                 .addGap(19, 19, 19)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(jButtonKeranjang)
                 .addGap(24, 24, 24)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -155,7 +168,7 @@ public class MainApp extends javax.swing.JFrame {
             .addGroup(jMainDashboardPanelLayout.createSequentialGroup()
                 .addGap(282, 282, 282)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(677, Short.MAX_VALUE))
+                .addContainerGap(726, Short.MAX_VALUE))
         );
         jMainDashboardPanelLayout.setVerticalGroup(
             jMainDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,8 +179,6 @@ public class MainApp extends javax.swing.JFrame {
         );
 
         jMainRootPanel.add(jMainDashboardPanel, "card2");
-
-        jLabel7.setText("cek awan");
 
         jTanamanPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -206,48 +217,52 @@ public class MainApp extends javax.swing.JFrame {
             .addGroup(jTanamanPanel1Layout.createSequentialGroup()
                 .addGroup(jTanamanPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jTanamanPanel1Layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(jLabelItemName1))
-                    .addGroup(jTanamanPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabelItem1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabelItem1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jTanamanPanel1Layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(jLabelItemName1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jTanamanPanel1Layout.setVerticalGroup(
             jTanamanPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jTanamanPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelItem1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelItem1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelItemName1)
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addGroup(jTanamanPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSpinnerItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonTambahKeranjang1))
-                .addGap(0, 7, Short.MAX_VALUE))
+                .addGap(0, 36, Short.MAX_VALUE))
         );
+
+        jCheckoutButton1.setBackground(new java.awt.Color(78, 144, 182));
+        jCheckoutButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckoutButton1.setText("Checkout");
 
         javax.swing.GroupLayout jItemPanelLayout = new javax.swing.GroupLayout(jItemPanel);
         jItemPanel.setLayout(jItemPanelLayout);
         jItemPanelLayout.setHorizontalGroup(
             jItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jItemPanelLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(44, 44, 44)
                 .addComponent(jTanamanPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(304, 304, 304))
+                .addContainerGap(727, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jItemPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jCheckoutButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jItemPanelLayout.setVerticalGroup(
             jItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jItemPanelLayout.createSequentialGroup()
-                .addContainerGap(155, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(365, 365, 365))
-            .addGroup(jItemPanelLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addContainerGap()
+                .addComponent(jCheckoutButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTanamanPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(322, Short.MAX_VALUE))
         );
 
         jMainRootPanel.add(jItemPanel, "card3");
@@ -324,8 +339,8 @@ public class MainApp extends javax.swing.JFrame {
         jKeranjangMainPanelLayout.setHorizontalGroup(
             jKeranjangMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jKeranjangMainPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 892, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 243, Short.MAX_VALUE))
         );
         jKeranjangMainPanelLayout.setVerticalGroup(
             jKeranjangMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,8 +387,19 @@ public class MainApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jSpinnerItem1KeyPressed
 
     private void jButtonTambahKeranjang1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahKeranjang1ActionPerformed
-
+        tanamanArrayList.add(tanamanArrayList.get(0));
+        isDataFill = true;
     }//GEN-LAST:event_jButtonTambahKeranjang1ActionPerformed
+
+    private void jButtonDaftarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDaftarItemActionPerformed
+        // TODO add your handling code here:
+        cardLayout.show(jMainRootPanel, "card3");
+    }//GEN-LAST:event_jButtonDaftarItemActionPerformed
+
+    private void jButtonKeranjangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKeranjangActionPerformed
+        // TODO add your handling code here:
+        cardLayout.show(jMainRootPanel, "card4");
+    }//GEN-LAST:event_jButtonKeranjangActionPerformed
 
     /**
      * @param args the command line arguments
@@ -414,11 +440,12 @@ public class MainApp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonDaftar;
+    private javax.swing.JButton jButtonDaftarItem;
+    private javax.swing.JButton jButtonKeranjang;
     private javax.swing.JButton jButtonTambahKeranjang1;
+    private javax.swing.JButton jCheckoutButton1;
     private javax.swing.JPanel jItemPanel;
     private javax.swing.JPanel jKeranjangMainPanel;
     private javax.swing.JLabel jLabel1;
@@ -427,7 +454,6 @@ public class MainApp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelItem1;
     private javax.swing.JLabel jLabelItemName1;
     private javax.swing.JPanel jMainDashboardPanel;
