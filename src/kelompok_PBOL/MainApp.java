@@ -30,6 +30,7 @@ public class MainApp extends javax.swing.JFrame {
     FileOutputStream fileOutputStream;
     boolean isDataFill = false;
     Pembeli pembeli = new Pembeli();
+    Validator validator;
 
     public MainApp() {
         initComponents();
@@ -91,7 +92,6 @@ public class MainApp extends javax.swing.JFrame {
         jRegistrasiButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         jControlPanel1.setBackground(new java.awt.Color(51, 204, 255));
 
@@ -181,13 +181,13 @@ public class MainApp extends javax.swing.JFrame {
                         .addComponent(jLoginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jRegisterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 11, Short.MAX_VALUE))
                     .addGroup(jControlPanel1Layout.createSequentialGroup()
                         .addGroup(jControlPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonDaftarItem, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                             .addComponent(jButtonKeranjang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(55, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -269,7 +269,7 @@ public class MainApp extends javax.swing.JFrame {
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPakisDashBoardLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         jMainRootPanel.add(jMainDashboardPanel, "card2");
@@ -349,7 +349,7 @@ public class MainApp extends javax.swing.JFrame {
                 .addComponent(jCheckoutButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTanamanPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(401, Short.MAX_VALUE))
+                .addContainerGap(452, Short.MAX_VALUE))
         );
 
         jMainRootPanel.add(jItemPanel, "card3");
@@ -431,7 +431,7 @@ public class MainApp extends javax.swing.JFrame {
         );
         jKeranjangMainPanelLayout.setVerticalGroup(
             jKeranjangMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE)
         );
 
         jMainRootPanel.add(jKeranjangMainPanel, "card4");
@@ -503,17 +503,17 @@ public class MainApp extends javax.swing.JFrame {
                     .addComponent(jPasswordLoginField, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
                 .addComponent(jUserLoginButton)
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addContainerGap(284, Short.MAX_VALUE))
             .addGroup(jLoginUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLoginUserPanelLayout.createSequentialGroup()
                     .addGap(213, 213, 213)
                     .addComponent(jUsernameLabelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(433, Short.MAX_VALUE)))
+                    .addContainerGap(484, Short.MAX_VALUE)))
             .addGroup(jLoginUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLoginUserPanelLayout.createSequentialGroup()
                     .addGap(216, 216, 216)
                     .addComponent(jUsernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(430, Short.MAX_VALUE)))
+                    .addContainerGap(481, Short.MAX_VALUE)))
         );
 
         jMainRootPanel.add(jLoginUserPanel, "card5");
@@ -627,7 +627,7 @@ public class MainApp extends javax.swing.JFrame {
                     .addComponent(jEmailLabelRegistrasi, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(jRegistrasiButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         jMainRootPanel.add(jRegisterUserPanel, "card6");
@@ -638,7 +638,7 @@ public class MainApp extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jControlPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jMainRootPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -683,8 +683,12 @@ public class MainApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jRegisterButtonActionPerformed
 
     private void jButtonTambahKeranjang1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahKeranjang1ActionPerformed
-        tanamanArrayList.add(tanamanArrayList.get(0));
-        this.isDataFill = true;
+        if (userAuthenticationLoginChecker()) {
+            tanamanArrayList.add(tanamanArrayList.get(0));
+            this.isDataFill = true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Anda harus login agar bisa tambah barang");
+        }
     }//GEN-LAST:event_jButtonTambahKeranjang1ActionPerformed
 
     private void jSpinnerItem1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSpinnerItem1KeyPressed
@@ -709,12 +713,16 @@ public class MainApp extends javax.swing.JFrame {
 
     private void jUserLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUserLoginButtonActionPerformed
         // TODO add your handling code here:
+        userAuthenticationLoginChecker();
+    }//GEN-LAST:event_jUserLoginButtonActionPerformed
+
+    private boolean userAuthenticationLoginChecker() {
         String userName = jUsernameTextField.getText();
         String passwordUser = String.valueOf(jPasswordLoginField.getPassword());
         if (userName.isEmpty() || passwordUser.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Salah satu atau seluruh field harus diisi !!", "Perhatian", JOptionPane.ERROR_MESSAGE);
         } else {
-            try (Scanner scanner = new Scanner(new File("user.txt"))) {
+            try (Scanner scanner = new Scanner(new File("D:/sample.txt"))) {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();
                     String[] parts = line.split(" ");
@@ -723,7 +731,7 @@ public class MainApp extends javax.swing.JFrame {
                         String storedPassword = parts[1];
                         if (userName.equals(storedUsername) && passwordUser.equals(storedPassword)) {
                             JOptionPane.showMessageDialog(null, "Login berhasil!");
-                            return;
+                            return true;
                         }
                     }
                 }
@@ -733,7 +741,9 @@ public class MainApp extends javax.swing.JFrame {
                 jUsernameTextField.setText(" ");
             }
         }
-    }//GEN-LAST:event_jUserLoginButtonActionPerformed
+        return false;
+    }
+
 
     private void jUsernameRegisTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsernameRegisTextField1ActionPerformed
         // TODO add your handling code here:
@@ -751,6 +761,7 @@ public class MainApp extends javax.swing.JFrame {
         // TODO add your handling code here:
         //set nama pembeli
 
+        validator = new Validator();
         String userNameRegistrasi = jUsernameRegisTextField1.getText();
         pembeli.setNamaPembeli(userNameRegistrasi);
 
@@ -766,20 +777,25 @@ public class MainApp extends javax.swing.JFrame {
         String emailPembeli = jEmailTextField.getText();
         pembeli.setEmailPembeli(emailPembeli);
 
-        if (userNameRegistrasi.isEmpty() || passwordPembeli.isEmpty() || emailPembeli.isEmpty() || alamatPembeli.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Salah satu atau semua field harus diisi");
-        } else {
-            try {
-                String info = pembeli.getNamaPembeli() + " " + pembeli.getPasswordPembeli();
-                File outputFile = new File("userfile.txt");
-                fileOutputStream = new FileOutputStream(outputFile);
-                fileOutputStream.write(info.getBytes);
-                fileOutputStream.close();
-            } catch (FileNotFoundException ex) {
-                System.out.println(ex.getMessage());
-            } catch (IOException e) {
-                throw new RuntimeException(e.getMessage());
+        if (validator.isValidUserName(userNameRegistrasi) || validator.isValidPassword(passwordPembeli)) {
+            if (userNameRegistrasi.isEmpty() || passwordPembeli.isEmpty() || emailPembeli.isEmpty() || alamatPembeli.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Salah satu atau semua fieldd harus diisi");
+            } else {
+                try {
+                    String info = pembeli.getNamaPembeli() + " " + pembeli.getPasswordPembeli();
+                    File outputFile = new File("D:/sample.txt");
+                    fileOutputStream = new FileOutputStream(outputFile);
+                    fileOutputStream.write(info.getBytes());
+                    fileOutputStream.close();
+                    JOptionPane.showMessageDialog(null, "Sukses  , Registrasi Berhasil ");
+                } catch (FileNotFoundException ex) {
+                    System.out.println(ex.getMessage());
+                } catch (IOException e) {
+                    throw new RuntimeException(e.getMessage());
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Format pengisian salah !!");
         }
     }//GEN-LAST:event_jRegistrasiButtonActionPerformed
 
