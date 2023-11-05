@@ -15,10 +15,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author OWNER
+ * @author Dito , Gilang , Felix , Danar
  */
 public class MainApp extends javax.swing.JFrame {
 
@@ -26,6 +28,7 @@ public class MainApp extends javax.swing.JFrame {
      * Creates new form kelompok
      */
     CardLayout cardLayout;
+    DataTanaman datasTanaman = new DataTanaman();
     ArrayList<Tanaman> tanamanArrayList = new ArrayList();
     FileOutputStream fileOutputStream;
     boolean isDataFill = false;
@@ -328,6 +331,11 @@ public class MainApp extends javax.swing.JFrame {
         jCheckoutButton1.setBackground(new java.awt.Color(78, 144, 182));
         jCheckoutButton1.setForeground(new java.awt.Color(255, 255, 255));
         jCheckoutButton1.setText("Checkout");
+        jCheckoutButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckoutButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jItemPanelLayout = new javax.swing.GroupLayout(jItemPanel);
         jItemPanel.setLayout(jItemPanelLayout);
@@ -356,63 +364,14 @@ public class MainApp extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Nama Tanaman", "Stock", "Jumlah", "Total Harga"
+                "Nama Pembeli", "Nama Tanaman", "Stock", "Jumlah", "Total Harga"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -678,13 +637,12 @@ public class MainApp extends javax.swing.JFrame {
     private void jRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterButtonActionPerformed
         // TODO add your handling code here:
         cardLayout.show(jMainRootPanel, "card6");
-
-
     }//GEN-LAST:event_jRegisterButtonActionPerformed
 
     private void jButtonTambahKeranjang1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahKeranjang1ActionPerformed
         if (userAuthenticationLoginChecker()) {
-            tanamanArrayList.add(tanamanArrayList.get(0));
+            tanamanArrayList.add(datasTanaman.listTanaman.get(0));
+            JOptionPane.showMessageDialog(null, "Barang ditambahkan ke keranjang");
             this.isDataFill = true;
         } else {
             JOptionPane.showMessageDialog(null, "Anda harus login agar bisa tambah barang");
@@ -703,18 +661,7 @@ public class MainApp extends javax.swing.JFrame {
     private void jLoginButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginButton1ActionPerformed
         // TODO add your handling code here:
         cardLayout.show(jMainRootPanel, "card5");
-
     }//GEN-LAST:event_jLoginButton1ActionPerformed
-
-    private void jUsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsernameTextFieldActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jUsernameTextFieldActionPerformed
-
-    private void jUserLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUserLoginButtonActionPerformed
-        // TODO add your handling code here:
-        userAuthenticationLoginChecker();
-    }//GEN-LAST:event_jUserLoginButtonActionPerformed
 
     private boolean userAuthenticationLoginChecker() {
         String userName = jUsernameTextField.getText();
@@ -730,20 +677,22 @@ public class MainApp extends javax.swing.JFrame {
                         String storedUsername = parts[0];
                         String storedPassword = parts[1];
                         if (userName.equals(storedUsername) && passwordUser.equals(storedPassword)) {
-                            JOptionPane.showMessageDialog(null, "Login berhasil!");
+//                            JOptionPane.showMessageDialog(null, "Login berhasil!");
                             return true;
+                        } else {
+//                            JOptionPane.showMessageDialog(null, "Login gagal. Username atau password salah.");
+                            return false;
                         }
                     }
                 }
-                JOptionPane.showMessageDialog(null, "Login gagal. Username atau password salah.");
             } catch (FileNotFoundException e) {
                 JOptionPane.showMessageDialog(null, "Mohon Registrasi terlebih dahulu .");
                 jUsernameTextField.setText(" ");
+                jPasswordLoginField.setText(" ");
             }
         }
         return false;
     }
-
 
     private void jUsernameRegisTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsernameRegisTextField1ActionPerformed
         // TODO add your handling code here:
@@ -765,7 +714,7 @@ public class MainApp extends javax.swing.JFrame {
         String userNameRegistrasi = jUsernameRegisTextField1.getText();
         pembeli.setNamaPembeli(userNameRegistrasi);
 
-        //set password pembeli 
+        //set password pembeli
         String passwordPembeli = String.valueOf(jRegistrasiPasswordField.getPassword());
         pembeli.setPasswordPembeli(passwordPembeli);
 
@@ -777,10 +726,10 @@ public class MainApp extends javax.swing.JFrame {
         String emailPembeli = jEmailTextField.getText();
         pembeli.setEmailPembeli(emailPembeli);
 
-        if (validator.isValidUserName(userNameRegistrasi) || validator.isValidPassword(passwordPembeli)) {
-            if (userNameRegistrasi.isEmpty() || passwordPembeli.isEmpty() || emailPembeli.isEmpty() || alamatPembeli.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Salah satu atau semua fieldd harus diisi");
-            } else {
+        if (userNameRegistrasi.isEmpty() || passwordPembeli.isEmpty() || emailPembeli.isEmpty() || alamatPembeli.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Salah satu atau semua field harus diisi");
+        } else {
+            if (validator.isValidUserName(userNameRegistrasi) || validator.isValidPassword(passwordPembeli) || validator.isValidAddress(alamatPembeli) || validator.isValidEmail(emailPembeli)) {
                 try {
                     String info = pembeli.getNamaPembeli() + " " + pembeli.getPasswordPembeli();
                     File outputFile = new File("D:/sample.txt");
@@ -793,11 +742,62 @@ public class MainApp extends javax.swing.JFrame {
                 } catch (IOException e) {
                     throw new RuntimeException(e.getMessage());
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Format Pengisian Salah");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Format pengisian salah !!");
         }
     }//GEN-LAST:event_jRegistrasiButtonActionPerformed
+
+    private static boolean spinnerValidationChecker(JSpinner spinner) {
+        int spinnerChecker = (Integer) spinner.getValue();
+        return spinnerChecker > 0;
+    }
+
+    //CHECKOUT BUG && NOT WORK PROPERLY 
+    private void jCheckoutButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckoutButton1ActionPerformed
+        // TODO add your handling code here:
+        if (userAuthenticationLoginChecker() != true) {
+            JOptionPane.showMessageDialog(null, "Login dahulu.");
+        } else {
+            if (spinnerValidationChecker(jSpinnerItem1) == true) {
+                cardLayout.show(jMainRootPanel, "card4");
+
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                int rowCount = model.getRowCount(); // Mendapatkan jumlah baris saat ini di tabel
+                // Jumlah data yang Anda ingin tampilkan
+                int desiredRowCount = tanamanArrayList.size();
+                // Jika jumlah baris saat ini tidak sama dengan jumlah data yang Anda inginkan, tambahkan atau hapus baris sesuai kebutuhan.
+                if (rowCount < desiredRowCount) {
+                    // Tambahkan baris hingga jumlahnya sama dengan desiredRowCount
+                    for (int i = rowCount; i < desiredRowCount; i++) {
+                        Tanaman tanaman = tanamanArrayList.get(i);
+                        if (jButtonTambahKeranjang1.isFocusable() || jSpinnerItem1.getVerifyInputWhenFocusTarget()) {
+                            System.out.println(pembeli.getNamaPembeli());
+                            Object[] row = {pembeli.getNamaPembeli(), tanaman.getNamaTanaman(), tanaman.getHargaTanaman(), jSpinnerItem1.getValue()};
+                            model.addRow(row);
+                        }
+                    }
+                } else if (rowCount > desiredRowCount) {
+                    // Hapus baris hingga jumlahnya sama dengan desiredRowCount
+                    for (int i = rowCount - 1; i >= desiredRowCount; i--) {
+                        model.removeRow(i);
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Mohon masukkan jumlah barang anda !!!");
+            }
+        }
+    }//GEN-LAST:event_jCheckoutButton1ActionPerformed
+
+    private void jUserLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUserLoginButtonActionPerformed
+        // TODO add your handling code here:
+        userAuthenticationLoginChecker();
+    }//GEN-LAST:event_jUserLoginButtonActionPerformed
+
+    private void jUsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsernameTextFieldActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jUsernameTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -806,7 +806,7 @@ public class MainApp extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

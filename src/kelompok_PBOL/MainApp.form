@@ -456,6 +456,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Checkout"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckoutButton1ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -492,7 +495,8 @@
                 <Component class="javax.swing.JTable" name="jTable1">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="50">
+                      <Table columnCount="5" rowCount="0">
+                        <Column editable="false" title="Nama Pembeli" type="java.lang.Object"/>
                         <Column editable="false" title="Nama Tanaman" type="java.lang.Object"/>
                         <Column editable="false" title="Stock" type="java.lang.Object"/>
                         <Column editable="false" title="Jumlah" type="java.lang.Object"/>

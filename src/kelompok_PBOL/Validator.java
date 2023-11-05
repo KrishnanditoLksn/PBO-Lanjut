@@ -29,4 +29,18 @@ public class Validator {
         Matcher m = p.matcher(regex);
         return m.matches();
     }
+
+    public static boolean isValidEmail(String email) {
+        String regex = "^(.+)@(\\S+)$";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(regex);
+        return m.matches();
+    }
+
+    public static boolean isValidAddress(String address) {
+        String regex = "^(\\\\d{1,}) [a-zA-Z0-9\\\\s]+(\\\\,)? [a-zA-Z]+(\\\\,)? [A-Z]{2} [0-9]{5,6}$";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(regex);
+        return m.matches();
+    }
 }
