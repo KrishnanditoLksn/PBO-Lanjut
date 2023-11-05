@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
@@ -33,7 +34,8 @@ public class MainApp extends javax.swing.JFrame {
     FileOutputStream fileOutputStream;
     boolean isDataFill = false;
     Pembeli pembeli = new Pembeli();
-    Validator validator;
+    Validator validator = validator = new Validator();
+    JCheckBox checkbox = new JCheckBox();
 
     public MainApp() {
         initComponents();
@@ -222,7 +224,7 @@ public class MainApp extends javax.swing.JFrame {
         jMainRootPanel.setLayout(new java.awt.CardLayout());
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(74, 193, 246));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Selamat Datang di Taneman Shop");
@@ -367,12 +369,19 @@ public class MainApp extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nama Pembeli", "Nama Tanaman", "Stock", "Jumlah", "Total Harga"
+                "Nama Pembeli", "Nama Tanaman", "Stock", "Jumlah", "Total Harga", "Status"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -661,38 +670,9 @@ public class MainApp extends javax.swing.JFrame {
     private void jLoginButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginButton1ActionPerformed
         // TODO add your handling code here:
         cardLayout.show(jMainRootPanel, "card5");
+
     }//GEN-LAST:event_jLoginButton1ActionPerformed
 
-    private boolean userAuthenticationLoginChecker() {
-        String userName = jUsernameTextField.getText();
-        String passwordUser = String.valueOf(jPasswordLoginField.getPassword());
-        if (userName.isEmpty() || passwordUser.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Salah satu atau seluruh field harus diisi !!", "Perhatian", JOptionPane.ERROR_MESSAGE);
-        } else {
-            try (Scanner scanner = new Scanner(new File("D:/sample.txt"))) {
-                while (scanner.hasNextLine()) {
-                    String line = scanner.nextLine();
-                    String[] parts = line.split(" ");
-                    if (parts.length == 2) {
-                        String storedUsername = parts[0];
-                        String storedPassword = parts[1];
-                        if (userName.equals(storedUsername) && passwordUser.equals(storedPassword)) {
-//                            JOptionPane.showMessageDialog(null, "Login berhasil!");
-                            return true;
-                        } else {
-//                            JOptionPane.showMessageDialog(null, "Login gagal. Username atau password salah.");
-                            return false;
-                        }
-                    }
-                }
-            } catch (FileNotFoundException e) {
-                JOptionPane.showMessageDialog(null, "Mohon Registrasi terlebih dahulu .");
-                jUsernameTextField.setText(" ");
-                jPasswordLoginField.setText(" ");
-            }
-        }
-        return false;
-    }
 
     private void jUsernameRegisTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsernameRegisTextField1ActionPerformed
         // TODO add your handling code here:
@@ -710,28 +690,23 @@ public class MainApp extends javax.swing.JFrame {
         // TODO add your handling code here:
         //set nama pembeli
 
-        validator = new Validator();
         String userNameRegistrasi = jUsernameRegisTextField1.getText();
-        pembeli.setNamaPembeli(userNameRegistrasi);
 
         //set password pembeli
         String passwordPembeli = String.valueOf(jRegistrasiPasswordField.getPassword());
-        pembeli.setPasswordPembeli(passwordPembeli);
 
         //set alamat pembeli
         String alamatPembeli = jAlamatTextField.getText();
-        pembeli.setAlamatPembeli(alamatPembeli);
 
         //set email pembeli
         String emailPembeli = jEmailTextField.getText();
-        pembeli.setEmailPembeli(emailPembeli);
 
         if (userNameRegistrasi.isEmpty() || passwordPembeli.isEmpty() || emailPembeli.isEmpty() || alamatPembeli.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Salah satu atau semua field harus diisi");
         } else {
             if (validator.isValidUserName(userNameRegistrasi) || validator.isValidPassword(passwordPembeli) || validator.isValidAddress(alamatPembeli) || validator.isValidEmail(emailPembeli)) {
                 try {
-                    String info = pembeli.getNamaPembeli() + " " + pembeli.getPasswordPembeli();
+                    String info = userNameRegistrasi + " " + passwordPembeli;
                     File outputFile = new File("D:/sample.txt");
                     fileOutputStream = new FileOutputStream(outputFile);
                     fileOutputStream.write(info.getBytes());
@@ -745,6 +720,7 @@ public class MainApp extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Format Pengisian Salah");
             }
+
         }
     }//GEN-LAST:event_jRegistrasiButtonActionPerformed
 
@@ -773,7 +749,7 @@ public class MainApp extends javax.swing.JFrame {
                         Tanaman tanaman = tanamanArrayList.get(i);
                         if (jButtonTambahKeranjang1.isFocusable() || jSpinnerItem1.getVerifyInputWhenFocusTarget()) {
                             System.out.println(pembeli.getNamaPembeli());
-                            Object[] row = {pembeli.getNamaPembeli(), tanaman.getNamaTanaman(), tanaman.getHargaTanaman(), jSpinnerItem1.getValue()};
+                            Object[] row = {jUsernameTextField.getText(), tanaman.getNamaTanaman(), tanaman.getHargaTanaman(), jSpinnerItem1.getValue()};
                             model.addRow(row);
                         }
                     }
@@ -787,17 +763,53 @@ public class MainApp extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Mohon masukkan jumlah barang anda !!!");
             }
         }
+
+        if (evt.getSource().equals(jTable1.getSelectedColumn())) {
+            JOptionPane.showMessageDialog(null, "Aku dipilih");
+        }
     }//GEN-LAST:event_jCheckoutButton1ActionPerformed
 
     private void jUserLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUserLoginButtonActionPerformed
         // TODO add your handling code here:
-        userAuthenticationLoginChecker();
+        if (userAuthenticationLoginChecker()) {
+            jLabel6.setText("Selamat Datang di Taneman Shop" + " " + jUsernameTextField.getText());
+        }
     }//GEN-LAST:event_jUserLoginButtonActionPerformed
 
     private void jUsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsernameTextFieldActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_jUsernameTextFieldActionPerformed
+
+    private boolean userAuthenticationLoginChecker() {
+        String userName = jUsernameTextField.getText();
+        String passwordUser = String.valueOf(jPasswordLoginField.getPassword());
+        if (userName.isEmpty() || passwordUser.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Salah satu atau seluruh field harus diisi !!", "Perhatian", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try (Scanner scanner = new Scanner(new File("D:/sample.txt"))) {
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine();
+                    String[] parts = line.split(" ");
+                    if (parts.length == 2) {
+                        String storedUsername = parts[0];
+                        String storedPassword = parts[1];
+                        if (userName.equals(storedUsername) && passwordUser.equals(storedPassword)) {
+                            JOptionPane.showMessageDialog(null, "Login berhasil!");
+                            return true;
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Login gagal. Username atau password salah.");
+                            return false;
+                        }
+                    }
+                }
+            } catch (FileNotFoundException e) {
+                JOptionPane.showMessageDialog(null, "Mohon Registrasi terlebih dahulu .");
+                jUsernameTextField.setText(" ");
+                jPasswordLoginField.setText(" ");
+            }
+        }
+        return false;
+    }
 
     /**
      * @param args the command line arguments

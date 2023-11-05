@@ -295,7 +295,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="36" style="0"/>
+                  <Font name="Segoe UI Black" size="36" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="f6" green="c1" red="4a" type="rgb"/>
@@ -495,12 +495,13 @@
                 <Component class="javax.swing.JTable" name="jTable1">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="0">
+                      <Table columnCount="6" rowCount="0">
                         <Column editable="false" title="Nama Pembeli" type="java.lang.Object"/>
                         <Column editable="false" title="Nama Tanaman" type="java.lang.Object"/>
                         <Column editable="false" title="Stock" type="java.lang.Object"/>
                         <Column editable="false" title="Jumlah" type="java.lang.Object"/>
                         <Column editable="false" title="Total Harga" type="java.lang.Object"/>
+                        <Column editable="true" title="Status" type="java.lang.Boolean"/>
                       </Table>
                     </Property>
                   </Properties>
