@@ -15,8 +15,8 @@ public class DataTanaman {
     ArrayList<Tanaman> listTanaman = new ArrayList();
 
     public DataTanaman() {
-        listTanaman.add(new Tanaman("Tanaman Pakis ", 45000, 200));
-        listTanaman.add(new Tanaman("Tanaman Bonsai", 100000000, 10));
+        listTanaman.add(new TanamanPakis("Tanaman Pakis ", 45000, 200));
+        listTanaman.add(new TanamanBonsai("Tanaman Bonsai", 100000000, 10));
     }
 
     public ArrayList<Tanaman> getListTanaman() {
