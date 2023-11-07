@@ -13,11 +13,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -77,6 +79,10 @@ public class MainApp extends javax.swing.JFrame {
         jKeranjangMainPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jCheckoutItemTextArea = new javax.swing.JTextArea();
+        jLabelCheckOutTitle = new javax.swing.JLabel();
+        jUserConfirmationButton = new javax.swing.JButton();
         jLoginUserPanel = new javax.swing.JPanel();
         jUsernamePassword = new javax.swing.JLabel();
         jUsernameLabelLogin = new javax.swing.JLabel();
@@ -97,6 +103,7 @@ public class MainApp extends javax.swing.JFrame {
         jRegistrasiButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         jControlPanel1.setBackground(new java.awt.Color(51, 204, 255));
 
@@ -261,7 +268,7 @@ public class MainApp extends javax.swing.JFrame {
                             .addGroup(jMainDashboardPanelLayout.createSequentialGroup()
                                 .addGap(556, 556, 556)
                                 .addComponent(jPakisDashBoardLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 589, Short.MAX_VALUE)))
+                        .addGap(0, 884, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jMainDashboardPanelLayout.setVerticalGroup(
@@ -343,14 +350,14 @@ public class MainApp extends javax.swing.JFrame {
         jItemPanel.setLayout(jItemPanelLayout);
         jItemPanelLayout.setHorizontalGroup(
             jItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jItemPanelLayout.createSequentialGroup()
-                .addContainerGap(1532, Short.MAX_VALUE)
-                .addComponent(jCheckoutButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(jItemPanelLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jTanamanPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1258, Short.MAX_VALUE))
+                .addContainerGap(1553, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jItemPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jCheckoutButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(227, 227, 227))
         );
         jItemPanelLayout.setVerticalGroup(
             jItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,17 +396,52 @@ public class MainApp extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jCheckoutItemTextArea.setEditable(false);
+        jCheckoutItemTextArea.setColumns(20);
+        jCheckoutItemTextArea.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jCheckoutItemTextArea.setRows(5);
+        jScrollPane2.setViewportView(jCheckoutItemTextArea);
+        jCheckoutItemTextArea.getAccessibleContext().setAccessibleParent(jKeranjangMainPanel);
+
+        jLabelCheckOutTitle.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        jLabelCheckOutTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCheckOutTitle.setText("Rincian Pembelian ");
+
+        jUserConfirmationButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jUserConfirmationButton.setText("Ke Pembayaran");
+        jUserConfirmationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUserConfirmationButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jKeranjangMainPanelLayout = new javax.swing.GroupLayout(jKeranjangMainPanel);
         jKeranjangMainPanel.setLayout(jKeranjangMainPanelLayout);
         jKeranjangMainPanelLayout.setHorizontalGroup(
             jKeranjangMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jKeranjangMainPanelLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 769, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 879, Short.MAX_VALUE))
+                .addGroup(jKeranjangMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jKeranjangMainPanelLayout.createSequentialGroup()
+                        .addGap(234, 234, 234)
+                        .addComponent(jUserConfirmationButton))
+                    .addGroup(jKeranjangMainPanelLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jKeranjangMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelCheckOutTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE))))
+                .addContainerGap(608, Short.MAX_VALUE))
         );
         jKeranjangMainPanelLayout.setVerticalGroup(
             jKeranjangMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE)
+            .addGroup(jKeranjangMainPanelLayout.createSequentialGroup()
+                .addComponent(jLabelCheckOutTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jUserConfirmationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jMainRootPanel.add(jKeranjangMainPanel, "card4");
@@ -447,18 +489,18 @@ public class MainApp extends javax.swing.JFrame {
                             .addGroup(jLoginUserPanelLayout.createSequentialGroup()
                                 .addGap(726, 726, 726)
                                 .addComponent(jUserLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 753, Short.MAX_VALUE)))
+                        .addGap(0, 1048, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jLoginUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLoginUserPanelLayout.createSequentialGroup()
                     .addGap(547, 547, 547)
                     .addComponent(jUsernameLabelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(991, Short.MAX_VALUE)))
+                    .addContainerGap(1286, Short.MAX_VALUE)))
             .addGroup(jLoginUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLoginUserPanelLayout.createSequentialGroup()
                     .addGap(675, 675, 675)
                     .addComponent(jUsernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(758, Short.MAX_VALUE)))
+                    .addContainerGap(1053, Short.MAX_VALUE)))
         );
         jLoginUserPanelLayout.setVerticalGroup(
             jLoginUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -540,7 +582,7 @@ public class MainApp extends javax.swing.JFrame {
                 .addGroup(jRegisterUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jRegisterUserPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jRegistrasiTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 1636, Short.MAX_VALUE))
+                        .addComponent(jRegistrasiTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 1931, Short.MAX_VALUE))
                     .addGroup(jRegisterUserPanelLayout.createSequentialGroup()
                         .addGroup(jRegisterUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jRegisterUserPanelLayout.createSequentialGroup()
@@ -749,7 +791,8 @@ public class MainApp extends javax.swing.JFrame {
                         Tanaman tanaman = tanamanArrayList.get(i);
                         if (jButtonTambahKeranjang1.isFocusable() || jSpinnerItem1.getVerifyInputWhenFocusTarget()) {
                             System.out.println(pembeli.getNamaPembeli());
-                            Object[] row = {jUsernameTextField.getText(), tanaman.getNamaTanaman(), tanaman.getHargaTanaman(), jSpinnerItem1.getValue()};
+                            int total = ((Integer) jSpinnerItem1.getValue() * tanaman.getHargaTanaman());
+                            Object[] row = {jUsernameTextField.getText(), tanaman.getNamaTanaman(), tanaman.getHargaTanaman(), jSpinnerItem1.getValue(), total, false};
                             model.addRow(row);
                         }
                     }
@@ -763,10 +806,6 @@ public class MainApp extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Mohon masukkan jumlah barang anda !!!");
             }
         }
-
-        if (evt.getSource().equals(jTable1.getSelectedColumn())) {
-            JOptionPane.showMessageDialog(null, "Aku dipilih");
-        }
     }//GEN-LAST:event_jCheckoutButton1ActionPerformed
 
     private void jUserLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUserLoginButtonActionPerformed
@@ -779,6 +818,17 @@ public class MainApp extends javax.swing.JFrame {
     private void jUsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsernameTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jUsernameTextFieldActionPerformed
+
+    private void jUserConfirmationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUserConfirmationButtonActionPerformed
+        // TODO add your handling code here:
+        for (Tanaman tanamanlist : tanamanArrayList) {
+            if (tanamanlist instanceof Tanaman) {
+                String spinnerValue1 = String.valueOf(jSpinnerItem1.getValue());
+                int jumlahBeliTanaman = Integer.parseInt(spinnerValue1);
+                jCheckoutItemTextArea.setText("\t" + "\t" + String.valueOf(jumlahBeliTanaman));
+    }//GEN-LAST:event_jUserConfirmationButtonActionPerformed
+        }
+    }
 
     private boolean userAuthenticationLoginChecker() {
         String userName = jUsernameTextField.getText();
@@ -857,6 +907,7 @@ public class MainApp extends javax.swing.JFrame {
     private javax.swing.JButton jButtonKeranjang;
     private javax.swing.JButton jButtonTambahKeranjang1;
     private javax.swing.JButton jCheckoutButton1;
+    private javax.swing.JTextArea jCheckoutItemTextArea;
     private javax.swing.JPanel jControlPanel1;
     private javax.swing.JLabel jEmailLabelRegistrasi;
     private javax.swing.JTextField jEmailTextField;
@@ -870,6 +921,7 @@ public class MainApp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelCheckOutTitle;
     private javax.swing.JLabel jLabelItemName1;
     private javax.swing.JButton jLoginButton1;
     private javax.swing.JLabel jLoginTitle;
@@ -885,9 +937,11 @@ public class MainApp extends javax.swing.JFrame {
     private javax.swing.JPasswordField jRegistrasiPasswordField;
     private javax.swing.JLabel jRegistrasiTitle;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinnerItem1;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel jTanamanPanel1;
+    private javax.swing.JButton jUserConfirmationButton;
     private javax.swing.JButton jUserLoginButton;
     private javax.swing.JLabel jUsernameLabelLogin;
     private javax.swing.JLabel jUsernameLabelRegistrasi1;

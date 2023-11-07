@@ -13,8 +13,6 @@ import java.util.ArrayList;
 public class DataTanaman {
 
     ArrayList<Tanaman> listTanaman = new ArrayList();
-    
-    
 
     public DataTanaman() {
         listTanaman.add(new Tanaman("Tanaman Pakis ", 45000, 200));
