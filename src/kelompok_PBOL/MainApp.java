@@ -5,21 +5,17 @@
 package kelompok_PBOL;
 
 import java.awt.CardLayout;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
+import java.sql.*;
 
 /**
  *
@@ -38,6 +34,8 @@ public class MainApp extends javax.swing.JFrame {
     Pembeli pembeli = new Pembeli();
     Validator validator = validator = new Validator();
     JCheckBox checkbox = new JCheckBox();
+    Connection connection;
+    PreparedStatement ps;
 //    String 
 
     public MainApp() {
@@ -435,19 +433,12 @@ public class MainApp extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nama Pembeli", "Nama Tanaman", "Stock", "Jumlah", "Total Harga", "Status"
+                "Nama Pembeli", "Nama Tanaman", "Stock", "Jumlah", "Total Harga"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true
+                false, false, false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -787,9 +778,14 @@ public class MainApp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jAlamatTextFieldActionPerformed
 
+    public int getIdUserRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
+    }
     private void jRegistrasiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegistrasiButtonActionPerformed
         // TODO add your handling code here:
         //set nama pembeli
+
+        int random_Id = getIdUserRandomNumber(1, 100000);
 
         String userNameRegistrasi = jUsernameRegisTextField1.getText();
 
@@ -806,17 +802,28 @@ public class MainApp extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Salah satu atau semua field harus diisi");
         } else {
             if (validator.isValidUserName(userNameRegistrasi) || validator.isValidPassword(passwordPembeli) || validator.isValidAddress(alamatPembeli) || validator.isValidEmail(emailPembeli)) {
+                connection = null;
+                ps = null;
+                connection = Koneksi.getConnection();
                 try {
-                    String info = userNameRegistrasi + " " + passwordPembeli + " " + alamatPembeli + " " + emailPembeli;
-                    File outputFile = new File("D:/sample.txt");
-                    fileOutputStream = new FileOutputStream(outputFile);
-                    fileOutputStream.write(info.getBytes());
-                    fileOutputStream.close();
-                    JOptionPane.showMessageDialog(null, "Sukses  , Registrasi Berhasil ");
-                } catch (FileNotFoundException ex) {
+                    ps = connection.prepareStatement("insert into TANDUR_USER values(?,?,?,?,?)");
+                    ps.setString(1, userNameRegistrasi);
+                    ps.setString(2, passwordPembeli);
+                    ps.setInt(3, random_Id);
+                    ps.setString(4, alamatPembeli);
+                    ps.setString(5, emailPembeli);
+                    ps.executeUpdate();
+                    connection.commit();
+                    JOptionPane.showMessageDialog(null, "Data sudah ditambahkan di database");
+                } catch (SQLException ex) {
                     System.out.println(ex.getMessage());
-                } catch (IOException e) {
-                    throw new RuntimeException(e.getMessage());
+                } finally {
+                    try {
+                        ps.close();
+                        connection.close();
+                    } catch (SQLException ex) {
+                        System.out.println(ex.getMessage());
+                    }
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Format Pengisian Salah");
@@ -903,12 +910,12 @@ public class MainApp extends javax.swing.JFrame {
             if (tanamanlist instanceof TanamanPakis) {
                 String spinnerValue1 = String.valueOf(jSpinnerItem1.getValue());
                 int jumlahBeliTanaman = Integer.parseInt(spinnerValue1);
-                jCheckoutItemTextArea.setText("\t" + "\t" + String.valueOf(jumlahBeliTanaman));
+                jCheckoutItemTextArea.setText(tanamanlist.getNamaTanaman() + "\t" + "\t" + String.valueOf(jumlahBeliTanaman));
     }//GEN-LAST:event_jUserConfirmationButtonActionPerformed
-            if (tanamanlist instanceof TanamanBonsai) {
+            else if (tanamanlist instanceof TanamanBonsai) {
                 String spinnerValue2 = String.valueOf(jSpinnerItem2.getValue());
                 int jumlahBeliTanaman = Integer.parseInt(spinnerValue2);
-                jCheckoutItemTextArea.setText("\t" + "\t" + String.valueOf(jumlahBeliTanaman));
+                jCheckoutItemTextArea.setText(tanamanlist.getNamaTanaman() + "\t" + "\t" + String.valueOf(jumlahBeliTanaman));
             }
         }
     }
@@ -931,26 +938,29 @@ public class MainApp extends javax.swing.JFrame {
         if (userName.isEmpty() || passwordUser.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Salah satu atau seluruh field harus diisi !!", "Perhatian", JOptionPane.ERROR_MESSAGE);
         } else {
-            try (Scanner scanner = new Scanner(new File("D:/sample.txt"))) {
-                while (scanner.hasNextLine()) {
-                    String line = scanner.nextLine();
-                    String[] parts = line.split(" ");
-                    if (parts.length == 2) {
-                        String storedUsername = parts[0];
-                        String storedPassword = parts[1];
-                        if (userName.equals(storedUsername) && passwordUser.equals(storedPassword)) {
-                            JOptionPane.showMessageDialog(null, "Login berhasil!");
-                            return true;
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Login gagal. Username atau password salah.");
-                            return false;
-                        }
-                    }
+            try {
+                connection = null;
+                ps = null;
+                connection = Koneksi.getConnection();
+                ps = connection.prepareStatement("Select nama, password from TANDUR_USER where nama=? and password=?");
+                ps.setString(1, userName);
+                ps.setString(2, passwordUser);
+                ResultSet st = ps.executeQuery();
+                if (st.next()) {
+                    JOptionPane.showMessageDialog(null, "Sukses Login !!");
+                    return true;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Gagal Login !!");
                 }
-            } catch (FileNotFoundException e) {
-                JOptionPane.showMessageDialog(null, "Mohon Registrasi terlebih dahulu .");
-                jUsernameTextField.setText(" ");
-                jPasswordLoginField.setText(" ");
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            } finally {
+                try {
+                    ps.close();
+                    connection.close();
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
         }
         return false;
