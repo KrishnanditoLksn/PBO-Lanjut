@@ -784,10 +784,11 @@ public class MainApp extends javax.swing.JFrame {
     private void jRegistrasiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegistrasiButtonActionPerformed
         // TODO add your handling code here:
         //set nama pembeli
-
+        Pembeli pembeli  = new Pembeli();
         int random_Id = getIdUserRandomNumber(1, 100000);
 
         String userNameRegistrasi = jUsernameRegisTextField1.getText();
+        
 
         //set password pembeli
         String passwordPembeli = String.valueOf(jRegistrasiPasswordField.getPassword());
