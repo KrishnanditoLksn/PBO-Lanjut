@@ -29,13 +29,11 @@ public class MainApp extends javax.swing.JFrame {
     CardLayout cardLayout;
     DataTanaman datasTanaman = new DataTanaman();
     ArrayList<Tanaman> tanamanArrayList = new ArrayList();
-    FileOutputStream fileOutputStream;
     boolean isDataFill = false;
     Pembeli pembeli = new Pembeli();
     Validator validator = validator = new Validator();
-    JCheckBox checkbox = new JCheckBox();
     Connection connection;
-    PreparedStatement ps;
+    PreparedStatement ps, checkStatement;
 //    String 
 
     public MainApp() {
@@ -55,13 +53,14 @@ public class MainApp extends javax.swing.JFrame {
         jControlPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jRegisterButton = new javax.swing.JButton();
         jButtonDaftarItem = new javax.swing.JButton();
         jButtonKeranjang = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jLoginButton1 = new javax.swing.JButton();
+        jDaftarPembelianButton = new javax.swing.JButton();
+        jLoginButton = new javax.swing.JButton();
+        jLogoutButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jMainRootPanel = new javax.swing.JPanel();
         jMainDashboardPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -105,6 +104,7 @@ public class MainApp extends javax.swing.JFrame {
         jEmailTextField = new javax.swing.JTextField();
         jAlamatTextField = new javax.swing.JTextField();
         jRegistrasiButton = new javax.swing.JButton();
+        jDaftarPembelianPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -127,16 +127,6 @@ public class MainApp extends javax.swing.JFrame {
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Item");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
             }
         });
 
@@ -171,16 +161,41 @@ public class MainApp extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(80, 150, 220));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Res/list.png"))); // NOI18N
-
-        jLoginButton1.setBackground(new java.awt.Color(56, 200, 209));
-        jLoginButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLoginButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jLoginButton1.setText("Login");
-        jLoginButton1.addActionListener(new java.awt.event.ActionListener() {
+        jDaftarPembelianButton.setBackground(new java.awt.Color(80, 150, 220));
+        jDaftarPembelianButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Res/list.png"))); // NOI18N
+        jDaftarPembelianButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jLoginButton1ActionPerformed(evt);
+                jDaftarPembelianButtonActionPerformed(evt);
+            }
+        });
+
+        jLoginButton.setBackground(new java.awt.Color(56, 200, 209));
+        jLoginButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLoginButton.setForeground(new java.awt.Color(0, 0, 0));
+        jLoginButton.setText("Login");
+        jLoginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLoginButtonActionPerformed(evt);
+            }
+        });
+
+        jLogoutButton.setBackground(new java.awt.Color(56, 200, 209));
+        jLogoutButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLogoutButton.setForeground(new java.awt.Color(0, 0, 0));
+        jLogoutButton.setText("Logout");
+        jLogoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLogoutButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Item");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
             }
         });
 
@@ -189,45 +204,54 @@ public class MainApp extends javax.swing.JFrame {
         jControlPanel1Layout.setHorizontalGroup(
             jControlPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jControlPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
             .addGroup(jControlPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jControlPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jControlPanel1Layout.createSequentialGroup()
-                        .addComponent(jLoginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRegisterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 11, Short.MAX_VALUE))
-                    .addGroup(jControlPanel1Layout.createSequentialGroup()
-                        .addGroup(jControlPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonDaftarItem, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                            .addComponent(jButtonKeranjang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jControlPanel1Layout.createSequentialGroup()
+                        .addGroup(jControlPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jControlPanel1Layout.createSequentialGroup()
+                                .addComponent(jLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                                .addComponent(jRegisterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jControlPanel1Layout.createSequentialGroup()
+                                .addGroup(jControlPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonDaftarItem, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                                    .addComponent(jButtonKeranjang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jDaftarPembelianButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         jControlPanel1Layout.setVerticalGroup(
             jControlPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jControlPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(49, 49, 49)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonDaftarItem, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(52, 52, 52)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonKeranjang, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jDaftarPembelianButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jControlPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRegisterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLoginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62))
+                    .addComponent(jLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
 
         jMainRootPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -271,7 +295,7 @@ public class MainApp extends javax.swing.JFrame {
                             .addGroup(jMainDashboardPanelLayout.createSequentialGroup()
                                 .addGap(556, 556, 556)
                                 .addComponent(jPakisDashBoardLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 288, Short.MAX_VALUE)))
+                        .addGap(0, 282, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jMainDashboardPanelLayout.setVerticalGroup(
@@ -320,7 +344,7 @@ public class MainApp extends javax.swing.JFrame {
                 .addComponent(jSpinnerItem1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonTambahKeranjang1)
-                .addGap(48, 48, 48))
+                .addGap(29, 29, 29))
             .addGroup(jTanamanPanel1Layout.createSequentialGroup()
                 .addGap(127, 127, 127)
                 .addComponent(jLabelItemName1)
@@ -408,11 +432,11 @@ public class MainApp extends javax.swing.JFrame {
                 .addComponent(jTanamanPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(98, 98, 98)
                 .addComponent(jTanamanPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(489, 495, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jItemPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jCheckoutButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(48, 48, 48))
         );
         jItemPanelLayout.setVerticalGroup(
             jItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,7 +497,7 @@ public class MainApp extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 769, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jKeranjangMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jKeranjangMainPanelLayout.createSequentialGroup()
-                        .addGap(234, 234, 234)
+                        .addGap(225, 225, 225)
                         .addComponent(jUserConfirmationButton))
                     .addGroup(jKeranjangMainPanelLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
@@ -539,18 +563,18 @@ public class MainApp extends javax.swing.JFrame {
                             .addGroup(jLoginUserPanelLayout.createSequentialGroup()
                                 .addGap(726, 726, 726)
                                 .addComponent(jUserLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 452, Short.MAX_VALUE)))
+                        .addGap(0, 446, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jLoginUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLoginUserPanelLayout.createSequentialGroup()
                     .addGap(547, 547, 547)
                     .addComponent(jUsernameLabelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(690, Short.MAX_VALUE)))
+                    .addContainerGap(684, Short.MAX_VALUE)))
             .addGroup(jLoginUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLoginUserPanelLayout.createSequentialGroup()
                     .addGap(675, 675, 675)
                     .addComponent(jUsernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(457, Short.MAX_VALUE)))
+                    .addContainerGap(451, Short.MAX_VALUE)))
         );
         jLoginUserPanelLayout.setVerticalGroup(
             jLoginUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -632,7 +656,7 @@ public class MainApp extends javax.swing.JFrame {
                 .addGroup(jRegisterUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jRegisterUserPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jRegistrasiTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 1335, Short.MAX_VALUE))
+                        .addComponent(jRegistrasiTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 1329, Short.MAX_VALUE))
                     .addGroup(jRegisterUserPanelLayout.createSequentialGroup()
                         .addGroup(jRegisterUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jRegisterUserPanelLayout.createSequentialGroup()
@@ -692,6 +716,19 @@ public class MainApp extends javax.swing.JFrame {
 
         jMainRootPanel.add(jRegisterUserPanel, "card6");
 
+        javax.swing.GroupLayout jDaftarPembelianPanelLayout = new javax.swing.GroupLayout(jDaftarPembelianPanel);
+        jDaftarPembelianPanel.setLayout(jDaftarPembelianPanelLayout);
+        jDaftarPembelianPanelLayout.setHorizontalGroup(
+            jDaftarPembelianPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1341, Short.MAX_VALUE)
+        );
+        jDaftarPembelianPanelLayout.setVerticalGroup(
+            jDaftarPembelianPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 756, Short.MAX_VALUE)
+        );
+
+        jMainRootPanel.add(jDaftarPembelianPanel, "card7");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -703,8 +740,8 @@ public class MainApp extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jControlPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jMainRootPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jControlPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -759,11 +796,10 @@ public class MainApp extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jPakisDashBoardLabelMouseClicked
 
-    private void jLoginButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginButton1ActionPerformed
+    private void jLogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogoutButtonActionPerformed
         // TODO add your handling code here:
         cardLayout.show(jMainRootPanel, "card5");
-
-    }//GEN-LAST:event_jLoginButton1ActionPerformed
+    }//GEN-LAST:event_jLogoutButtonActionPerformed
 
 
     private void jUsernameRegisTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsernameRegisTextField1ActionPerformed
@@ -784,11 +820,10 @@ public class MainApp extends javax.swing.JFrame {
     private void jRegistrasiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegistrasiButtonActionPerformed
         // TODO add your handling code here:
         //set nama pembeli
-        Pembeli pembeli  = new Pembeli();
+        Pembeli pembeli = new Pembeli();
         int random_Id = getIdUserRandomNumber(1, 100000);
 
         String userNameRegistrasi = jUsernameRegisTextField1.getText();
-        
 
         //set password pembeli
         String passwordPembeli = String.valueOf(jRegistrasiPasswordField.getPassword());
@@ -803,24 +838,24 @@ public class MainApp extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Salah satu atau semua field harus diisi");
         } else {
             if (validator.isValidUserName(userNameRegistrasi) || validator.isValidPassword(passwordPembeli) || validator.isValidAddress(alamatPembeli) || validator.isValidEmail(emailPembeli)) {
-                connection = null;
-                ps = null;
                 connection = Koneksi.getConnection();
+                ps = null;
                 try {
-                    ps = connection.prepareStatement("insert into TANDUR_USER values(?,?,?,?,?)");
+                    ps = connection.prepareStatement("insert into TANDUR_USER values(?,?,?,?,?,?)");
                     ps.setString(1, userNameRegistrasi);
                     ps.setString(2, passwordPembeli);
                     ps.setInt(3, random_Id);
                     ps.setString(4, alamatPembeli);
                     ps.setString(5, emailPembeli);
+                    ps.setInt(6, 0);
                     ps.executeUpdate();
-                    connection.commit();
                     JOptionPane.showMessageDialog(null, "Data sudah ditambahkan di database");
                 } catch (SQLException ex) {
                     System.out.println(ex.getMessage());
                 } finally {
                     try {
                         ps.close();
+                        checkStatement.close();
                         connection.close();
                     } catch (SQLException ex) {
                         System.out.println(ex.getMessage());
@@ -898,6 +933,8 @@ public class MainApp extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (userAuthenticationLoginChecker()) {
             jLabel6.setText("Selamat Datang di Taneman Shop , " + " " + jUsernameTextField.getText());
+        } else {
+            jLabel6.setText("Selamat Datang  , Anonim");
         }
     }//GEN-LAST:event_jUserLoginButtonActionPerformed
 
@@ -909,14 +946,26 @@ public class MainApp extends javax.swing.JFrame {
         // TODO add your handling code here:
         for (Tanaman tanamanlist : tanamanArrayList) {
             if (tanamanlist instanceof TanamanPakis) {
-                String spinnerValue1 = String.valueOf(jSpinnerItem1.getValue());
-                int jumlahBeliTanaman = Integer.parseInt(spinnerValue1);
-                jCheckoutItemTextArea.setText(tanamanlist.getNamaTanaman() + "\t" + "\t" + String.valueOf(jumlahBeliTanaman));
+                int jumlahBeliTanaman1 = Integer.parseInt(String.valueOf(jSpinnerItem1.getValue()));
+
+                if (jumlahBeliTanaman1 > tanamanlist.getStokTanaman()) {
+                    JOptionPane.showMessageDialog(null, "Jumlah melebihi stok !!");
+                } else {
+                    for (int i = 0; i < jumlahBeliTanaman1; i++) {
+                        jCheckoutItemTextArea.setText(String.format("%s\t\t%s\n", tanamanlist.getNamaTanaman(), i + 1));
+                    }
+                }
     }//GEN-LAST:event_jUserConfirmationButtonActionPerformed
-            else if (tanamanlist instanceof TanamanBonsai) {
-                String spinnerValue2 = String.valueOf(jSpinnerItem2.getValue());
-                int jumlahBeliTanaman = Integer.parseInt(spinnerValue2);
-                jCheckoutItemTextArea.setText(tanamanlist.getNamaTanaman() + "\t" + "\t" + String.valueOf(jumlahBeliTanaman));
+            if (tanamanlist instanceof TanamanBonsai) {
+                int jumlahBeliTanaman2 = Integer.parseInt(String.valueOf(jSpinnerItem2.getValue()));
+
+                if (jumlahBeliTanaman2 > tanamanlist.getStokTanaman()) {
+                    JOptionPane.showMessageDialog(null, "Jumlah melebihi stok !!");
+                } else {
+                    for (int i = 0; i < jumlahBeliTanaman2; i++) {
+                        jCheckoutItemTextArea.append(String.format("%s\t\t%s\n", tanamanlist.getNamaTanaman(), i + 1));
+                    }
+                }
             }
         }
     }
@@ -933,6 +982,16 @@ public class MainApp extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonTambahKeranjang2ActionPerformed
 
+    private void jDaftarPembelianButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDaftarPembelianButtonActionPerformed
+        // TODO add your handling code here:
+        cardLayout.show(jMainRootPanel, "card7");
+    }//GEN-LAST:event_jDaftarPembelianButtonActionPerformed
+
+    private void jLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginButtonActionPerformed
+        // TODO add your handling code here:
+        cardLayout.show(jMainRootPanel, "card5");
+    }//GEN-LAST:event_jLoginButtonActionPerformed
+
     private boolean userAuthenticationLoginChecker() {
         String userName = jUsernameTextField.getText();
         String passwordUser = String.valueOf(jPasswordLoginField.getPassword());
@@ -941,23 +1000,22 @@ public class MainApp extends javax.swing.JFrame {
         } else {
             try {
                 connection = null;
-                ps = null;
                 connection = Koneksi.getConnection();
-                ps = connection.prepareStatement("Select nama, password from TANDUR_USER where nama=? and password=?");
-                ps.setString(1, userName);
-                ps.setString(2, passwordUser);
+                String sql = ("SELECT * FROM TANDUR_USER WHERE NAMA='" + userName + "' AND PASSWORD='" + passwordUser + "'");
+                ps = connection.prepareStatement(sql);
                 ResultSet st = ps.executeQuery();
                 if (st.next()) {
-                    JOptionPane.showMessageDialog(null, "Sukses Login !!");
-                    return true;
+                    if (userName.equals(st.getString("NAMA")) && passwordUser.equals(st.getString("PASSWORD"))) {
+                        JOptionPane.showMessageDialog(null, "Sukses Login !!");
+                        return true;
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Gagal Login !!");
+                    JOptionPane.showMessageDialog(null, "Gagal Login  , Password atau Username salah!!");
                 }
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             } finally {
                 try {
-                    ps.close();
                     connection.close();
                 } catch (SQLException ex) {
                     System.out.println(ex.getMessage());
@@ -1008,7 +1066,6 @@ public class MainApp extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jAlamatLabelRegistrasi;
     private javax.swing.JTextField jAlamatTextField;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonDaftarItem;
     private javax.swing.JButton jButtonKeranjang;
     private javax.swing.JButton jButtonTambahKeranjang1;
@@ -1016,6 +1073,8 @@ public class MainApp extends javax.swing.JFrame {
     private javax.swing.JButton jCheckoutButton1;
     private javax.swing.JTextArea jCheckoutItemTextArea;
     private javax.swing.JPanel jControlPanel1;
+    private javax.swing.JButton jDaftarPembelianButton;
+    private javax.swing.JPanel jDaftarPembelianPanel;
     private javax.swing.JLabel jEmailLabelRegistrasi;
     private javax.swing.JTextField jEmailTextField;
     private javax.swing.JPanel jItemPanel;
@@ -1032,9 +1091,10 @@ public class MainApp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelItemName1;
     private javax.swing.JLabel jLabelTanaman1;
     private javax.swing.JLabel jLabelTanaman2;
-    private javax.swing.JButton jLoginButton1;
+    private javax.swing.JButton jLoginButton;
     private javax.swing.JLabel jLoginTitle;
     private javax.swing.JPanel jLoginUserPanel;
+    private javax.swing.JButton jLogoutButton;
     private javax.swing.JPanel jMainDashboardPanel;
     private javax.swing.JPanel jMainRootPanel;
     private javax.swing.JLabel jPakisDashBoardLabel;

@@ -35,11 +35,11 @@ public class Tanaman {
         this.hargaTanaman = hargaTanaman;
     }
 
-    public int setStokTanaman() {
+    public int getStokTanaman() {
         return stokTanaman;
     }
 
-    public void setStokTanaman(int stokTanaman) {
+    public void setStokTanaman() {
         this.stokTanaman = stokTanaman;
     }
 
